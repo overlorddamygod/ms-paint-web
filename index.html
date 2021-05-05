@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Untitled - Paint</title>
+	<link rel = "icon" href="./icons/logo.webp" type = "image/x-icon">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="menu-bar border">
+		<div id="menu-item">File</div>
+		<div id="menu-item">Edit</div>
+		<div id="menu-item">View</div>
+		<div id="menu-item">Image</div>
+		<div id="menu-item">Colors</div>
+		<div id="menu-item">Help</div>
+	</div>
+	<main>
+		<div class="tools-draw">
+			<div class="tools-area border">
+				<div id="tools">
+					<div id="tool" data-tool-name="fill">
+						<img src="./icons/tools/fill.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="word">
+						<img src="./icons/tools/word.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="eraser">
+						<img src="./icons/tools/eraser.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="fill">
+						<img src="./icons/tools/fill.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="color">
+						<img src="./icons/tools/color-picker.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="curve">
+						<img src="./icons/tools/curve.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="pencil" class="selected">
+						<img src="./icons/tools/pencil.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="brush">
+						<img src="./icons/tools/brush.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="polygon">
+						<img src="./icons/tools/polygon.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="word">
+						<img src="./icons/tools/word.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="line">
+						<img src="./icons/tools/line.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="curve">
+						<img src="./icons/tools/curve.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="rect">
+						<img src="./icons/tools/rect.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="polygon">
+						<img src="./icons/tools/polygon.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="ellipse">
+						<img src="./icons/tools/ellipse.svg" alt="" srcset="">
+					</div>
+					<div id="tool" data-tool-name="quad">
+						<img src="./icons/tools/quad.svg" alt="" srcset="">
+					</div>
+				</div>
+				<div class="choice-area border"></div>
+			</div>
+			<div class="draw-area border">
+				<canvas id="myCanvas" width="960" height="500"></canvas>
+			</div>
+		</div>
+		<div class="colors-area border">
+			<!-- sad -->
+			<div class="selected-color border-box">
+				<div class="border-box select-color-1" id="color-box"></div>
+				<div class="border-box select-color-2" id="color-box"></div>
+			</div>
+			<div class="select-colors">
+				
+			</div>
+		</div>
+		<div class="info-area border">For Help, click Help Topics on the Help Menu.</div>
+	</main>
+
+	<script>
+		const selectColorsArea = document.querySelector(".select-colors")
+		const _colors = ["#010006","#828085","#8A0000","#7C8600","#008703","#00817D","#1C007B","#88007E","#7D833B","#003E46","#0571FF","#003C83","#9800FF","#873800",
+		"#FEFEFE","#BFBEC1","#FF0000","#FAFF00","#00FF08","#00FFFB","#4000FB","#FF00FF","#FAFF7C","#00FF80","#44FFFF","#8F68FF","#FF0078","#FF732C"]
+
+		_colors.forEach(_color_=> {
+			const el = document.createElement("div")
+			el.classList = "border-box"
+			el.id = "color-box"
+			el.style.backgroundColor = _color_
+			el.addEventListener("click", ()=>{
+				document.querySelector(".select-color-1").style.backgroundColor = _color_
+				color = _color_
+			})
+			selectColorsArea.appendChild(el)
+		})
+		// const colorBoxes = document.querySelectorAll("#color-box")
+		// colorBoxes.forEach((colorBox)=> {
+			
+		// })
+		const tools = document.querySelectorAll("#tool")
+
+		tools.forEach(tool => {
+			tool.addEventListener("click",() => {
+				// console.log(tool)
+				tools.forEach(_tool=> {
+					
+					if ( tool.dataset.toolName == _tool.dataset.toolName ) {
+						tool.classList.remove("selected")
+						tool.classList.add("selected")
+					} else {
+						_tool.classList.remove("selected")
+					}
+				})
+			})
+		})
+
+	</script>
+	<script src="./js/examples.js"></script>
+
+	<script src="./js/easeljs-NEXT.js"></script>
+
+	<script src="./draw.js"></script>
+</body>
+</html>
