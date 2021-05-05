@@ -108,14 +108,16 @@ main {
 #myCanvas {
     border: 1px solid black;
     background-color: white;
+    /* cursor:url(./icons/tools/circle.svg), auto; */
 }
 
 /* Color selector Area */
 
 .colors-area {
-    height: 10vh;
+    height: 5rem;
     padding: 0.5rem;
     display: flex;
+    min-height: 5rem;
 }
 
 .selected-color {
@@ -155,7 +157,7 @@ main {
 }
 
 .select-color-2 {
-    background-color: yellow;
+    background-color: white;
     position: absolute;
     top: 35%;
     left:40%;

@@ -22,52 +22,84 @@
 			<div class="tools-area border">
 				<div id="tools">
 					<div id="tool" data-tool-name="fill">
-						<img src="./icons/tools/fill.svg" alt="" srcset="">
+						<abbr title="fill">
+							<img src="./icons/tools/fill.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="word">
-						<img src="./icons/tools/word.svg" alt="" srcset="">
+						<abbr title="word">
+							<img src="./icons/tools/word.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="eraser">
-						<img src="./icons/tools/eraser.svg" alt="" srcset="">
+						<abbr title="eraser">
+							<img src="./icons/tools/eraser.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="fill">
-						<img src="./icons/tools/fill.svg" alt="" srcset="">
+						<abbr title="fill">
+							<img src="./icons/tools/fill.svg" alt="" srcset="">
+						</abbr>
 					</div>
-					<div id="tool" data-tool-name="color">
-						<img src="./icons/tools/color-picker.svg" alt="" srcset="">
+					<div id="tool" data-tool-name="color-picker">
+						<abbr title="color">
+							<img src="./icons/tools/color-picker.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="curve">
-						<img src="./icons/tools/curve.svg" alt="" srcset="">
+						<abbr title="curve">
+							<img src="./icons/tools/curve.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="pencil" class="selected">
-						<img src="./icons/tools/pencil.svg" alt="" srcset="">
+						<abbr title="selected">
+							<img src="./icons/tools/pencil.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="brush">
-						<img src="./icons/tools/brush.svg" alt="" srcset="">
+						<abbr title="brush">
+							<img src="./icons/tools/brush.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="polygon">
-						<img src="./icons/tools/polygon.svg" alt="" srcset="">
+						<abbr title="polygon">
+							<img src="./icons/tools/polygon.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="word">
-						<img src="./icons/tools/word.svg" alt="" srcset="">
+						<abbr title="word">
+							<img src="./icons/tools/word.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="line">
-						<img src="./icons/tools/line.svg" alt="" srcset="">
+						<abbr title="line">
+							<img src="./icons/tools/line.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="curve">
-						<img src="./icons/tools/curve.svg" alt="" srcset="">
+						<abbr title="curve">
+							<img src="./icons/tools/curve.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="rect">
-						<img src="./icons/tools/rect.svg" alt="" srcset="">
+						<abbr title="rect">
+							<img src="./icons/tools/rect.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="polygon">
-						<img src="./icons/tools/polygon.svg" alt="" srcset="">
+						<abbr title="polygon">
+							<img src="./icons/tools/polygon.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="ellipse">
-						<img src="./icons/tools/ellipse.svg" alt="" srcset="">
+						<abbr title="ellipse">
+							<img src="./icons/tools/ellipse.svg" alt="" srcset="">
+						</abbr>
 					</div>
 					<div id="tool" data-tool-name="quad">
-						<img src="./icons/tools/quad.svg" alt="" srcset="">
+						<abbr title="quad">
+							<img src="./icons/tools/quad.svg" alt="" srcset="">
+						</abbr>
 					</div>
 				</div>
 				<div class="choice-area border"></div>
@@ -89,21 +121,42 @@
 		<div class="info-area border">For Help, click Help Topics on the Help Menu.</div>
 	</main>
 
+
+	<script src="./js/easeljs-NEXT.js"></script>
+	<!-- <script type="text/javascript" src="./js/bitmap.min.js"></script> -->
+
+	<script src="./js/draw.js"></script>
 	<script>
 		const selectColorsArea = document.querySelector(".select-colors")
 		const _colors = ["#010006","#828085","#8A0000","#7C8600","#008703","#00817D","#1C007B","#88007E","#7D833B","#003E46","#0571FF","#003C83","#9800FF","#873800",
 		"#FEFEFE","#BFBEC1","#FF0000","#FAFF00","#00FF08","#00FFFB","#4000FB","#FF00FF","#FAFF7C","#00FF80","#44FFFF","#8F68FF","#FF0078","#FF732C"]
-
+		document.querySelector("#menu-item").addEventListener("mousedown",(e)=> {
+			console.log(e)
+		})
 		_colors.forEach(_color_=> {
 			const el = document.createElement("div")
 			el.classList = "border-box"
 			el.id = "color-box"
 			el.style.backgroundColor = _color_
-			el.addEventListener("click", ()=>{
-				document.querySelector(".select-color-1").style.backgroundColor = _color_
-				color = _color_
+			el.addEventListener("mousedown", (e)=>{
+				console.log(e)
+				if (e.button == 0) {
+					primaryColor = _color_	
+					document.querySelector(".select-color-1").style.backgroundColor = primaryColor
+				} else if ( e.button == 2 ) {
+					secondaryColor = _color_
+					document.querySelector(".select-color-2").style.backgroundColor = secondaryColor
+				} 
 			})
 			selectColorsArea.appendChild(el)
+		})
+
+		document.querySelector(".selected-color").addEventListener("click",()=> {
+			let tempColor = primaryColor;
+			primaryColor = secondaryColor;
+			secondaryColor = tempColor;
+			document.querySelector(".select-color-1").style.backgroundColor = primaryColor
+			document.querySelector(".select-color-2").style.backgroundColor = secondaryColor
 		})
 		// const colorBoxes = document.querySelectorAll("#color-box")
 		// colorBoxes.forEach((colorBox)=> {
@@ -113,10 +166,28 @@
 
 		tools.forEach(tool => {
 			tool.addEventListener("click",() => {
-				// console.log(tool)
+				stage.removeAllEventListeners();
+				const toolName = tool.dataset.toolName
+				// document.getElementById("myCanvas").style.cursor = `url(icons/tools/${toolName}.svg), auto;`
+				switch(toolName) {
+					case "pencil":
+						// console.log("SAD")
+						stage.addEventListener("stagemousedown", pencil_handleMouseDown);
+						stage.addEventListener("stagemouseup", pencil_handleMouseUp);
+						break;
+					case "eraser":
+						stage.addEventListener("stagemousedown", eraser_handleMouseDown);
+						stage.addEventListener("stagemouseup", eraser_handleMouseUp);
+						break;
+					case "color-picker":
+						canvas.addEventListener('click', function(event) {
+							pick(event);
+						});
+
+				}
 				tools.forEach(_tool=> {
 					
-					if ( tool.dataset.toolName == _tool.dataset.toolName ) {
+					if ( toolName == _tool.dataset.toolName ) {
 						tool.classList.remove("selected")
 						tool.classList.add("selected")
 					} else {
@@ -127,8 +198,5 @@
 		})
 
 	</script>
-	<script src="./js/easeljs-NEXT.js"></script>
-
-	<script src="./js/draw.js"></script>
 </body>
 </html>
