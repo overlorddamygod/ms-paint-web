@@ -3,6 +3,7 @@ const isMac = window.navigator.userAgent.indexOf("Mac") != -1
 const state = {
     redo_list: [],
     undo_list: [],
+    state69: [],
     saveState: function(_canvas, list, keep_redo) {
       keep_redo = keep_redo || false;
       if(!keep_redo) {

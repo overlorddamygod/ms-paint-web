@@ -130,3 +130,19 @@ document.querySelectorAll("#choice").forEach((strokeChoice,index) => {
     })
 })
 
+const strokeWeights = Array.from({length:6}).map((a,i)=>i+1)
+strokeWeights.forEach(strokeWeight=> {
+  const div = document.createElement("div")
+  div.id = "choice"
+  // document.querySelector(".choice-area").forEach((strokeChoice,index) => {
+  div.addEventListener("click",e=> {
+      stroke = index + 1;
+  })
+  div.innerHTML = `
+    <svg width="100" height="20" >
+      <line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:${+strokeWeight}" />
+    </svg> 
+  `
+  document.querySelector(".choice-area").append(div)
+})
+

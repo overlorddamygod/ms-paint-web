@@ -187,7 +187,7 @@ const mouseHandlers = {
 
 window.addEventListener("contextmenu", (e) => e.preventDefault());
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", async (e) => {
   if (
     (e.ctrlKey && e.key === "z" && !isMac) ||
     (e.metaKey && e.key === "z" && !e.shiftKey && isMac)
@@ -202,4 +202,24 @@ window.addEventListener("keydown", (e) => {
     console.log("REDO");
     state.redo(canvas, ctx);
   }
+  if (
+    (e.ctrlKey && e.key === "v" && !isMac) ||
+    (e.metaKey && e.key === "v" && !e.shiftKey && isMac)
+  ) {
+    console.log("Paste");
+    // const text = await navigator.clipboard.readText();
+    // console.log(text)
+    // state.undo(canvas, ctx);
+  }
 });
+
+// TODO : Implement image paste
+window.addEventListener("paste", async function(e) {
+    // e.preventDefault();
+    // e.stopPropagation();
+    console.log(e)
+    let file = e.clipboardData.items[0].getAsFile();
+    console.log(file)
+    // let objectUrl = URL.createObjectURL(file);
+    // do something with url here
+  });
