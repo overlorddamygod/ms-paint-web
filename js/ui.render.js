@@ -58,6 +58,7 @@ const tools = document.querySelectorAll("#tool");
 tools.forEach((tool) => {
   tool.addEventListener("click", () => {
     stage.removeAllEventListeners();
+    canvas.removeEventListener("click", mouseHandlers.colorPicker.click);
     const toolName = tool.dataset.toolName;
 
     switch (toolName) {
