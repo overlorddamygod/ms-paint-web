@@ -124,19 +124,13 @@ document.querySelectorAll("#menu-item")[2].addEventListener("click",(e) => {
     saveFile("image/jpeg");
 })
 
-document.querySelectorAll("#choice").forEach((strokeChoice,index) => {
-    strokeChoice.addEventListener("click",e=> {
-        stroke = index + 1;
-    })
-})
-
 const strokeWeights = Array.from({length:6}).map((a,i)=>i+1)
 strokeWeights.forEach(strokeWeight=> {
   const div = document.createElement("div")
   div.id = "choice"
   // document.querySelector(".choice-area").forEach((strokeChoice,index) => {
   div.addEventListener("click",e=> {
-      stroke = index + 1;
+      stroke = strokeWeight;
   })
   div.innerHTML = `
     <svg width="100" height="20" >
