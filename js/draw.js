@@ -25,7 +25,7 @@ createjs.Touch.enable(stage);
 createjs.Ticker.framerate = 24;
 
 drawingCanvas = new createjs.Shape();
-drawingCanvas.graphics.beginStroke("#ffffff").drawRect(0, 0, stageW, stageH);
+drawingCanvas.graphics.beginStroke("#ffffff").beginFill("#ffffff").drawRect(0, 0, stageW, stageH);
 
 stage.addChild(drawingCanvas);
 
