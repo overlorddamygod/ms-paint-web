@@ -30,6 +30,13 @@ body {
 
 #menu-item {
     margin: 0 0.5rem;
+    cursor: pointer;
+}
+
+#menu-item:hover {
+    /* background-color: #F8FCED; */
+    /* border: 1px solid #8B999C; */
+    /* border-radius: 5px; */
 }
 
 /* Tools and Draw Area */
@@ -98,17 +105,44 @@ main {
 
 .choice-area {
     height: 8rem;  
+    overflow-y: scroll;
+}
+.choice-area::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.choice-area {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#choice {
+    /* background-color: #F8FCED; */
+    padding:0.0.5rem;
+    margin: 0.05rem 0.05rem;
+    border: 1px solid #8B999C;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    /* border-radius: 5px; */
+}
+
+#choice svg {
+    width: 100%;
+    /* height: 1rem; */
 }
 
 .draw-area {
     flex:1;
-    /* background-color: #FFFFFF; */
+    height:100%;
+    max-height: 40rem;
+    overflow:auto;
 }
 
 #myCanvas {
     border: 1px solid black;
     background-color: white;
-    /* cursor:url(./icons/tools/circle.svg), auto; */
 }
 
 /* Color selector Area */

@@ -4,13 +4,15 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Untitled - Paint</title>
+	<title>Untitled.png - Paint</title>
 	<link rel = "icon" href="./icons/logo.webp" type = "image/x-icon">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="menu-bar border">
 		<div id="menu-item">File</div>
+		<div id="menu-item">Open</div>
+		<div id="menu-item">Save</div>
 		<div id="menu-item">Edit</div>
 		<div id="menu-item">View</div>
 		<div id="menu-item">Image</div>
@@ -102,7 +104,43 @@
 						</abbr>
 					</div>
 				</div>
-				<div class="choice-area border"></div>
+				<div class="choice-area border">
+					<div id="choice">
+						<svg width="100" height="20" >
+							<line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:1" />
+						</svg>
+					</div>
+					<div id="choice">
+						<svg width="100" height="20" >
+							<line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:2" />
+						</svg> 
+					</div>
+					<div id="choice">
+						<svg width="100" height="20" >
+							<line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:3" />
+						</svg> 
+					</div>
+					<div id="choice">
+						<svg width="100" height="20" >
+							<line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:4" />
+						</svg> 
+					</div>
+					<div id="choice">
+						<svg width="100" height="20" >
+							<line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:5" />
+						</svg> 
+					</div>
+					<div id="choice">
+						<svg width="100" height="20" >
+							<line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:6" />
+						</svg> 
+					</div>
+					<div id="choice">
+						<svg width="100" height="20" >
+							<line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:7" />
+						</svg> 
+					</div>
+				</div>
 			</div>
 			<div class="draw-area border">
 				<canvas id="myCanvas" width="960" height="500"></canvas>
@@ -121,82 +159,16 @@
 		<div class="info-area border">For Help, click Help Topics on the Help Menu.</div>
 	</main>
 
-
+	<!-- Scripts -->
+	<script src="./js/utils.js"></script>
+	<script src="./js/state.js"></script>
 	<script src="./js/easeljs-NEXT.js"></script>
-	<!-- <script type="text/javascript" src="./js/bitmap.min.js"></script> -->
-
+	<script src="./js/mouseHandlers.js"></script>
+	<script src="./js/ui.render.js"></script>
 	<script src="./js/draw.js"></script>
 	<script>
-		const selectColorsArea = document.querySelector(".select-colors")
-		const _colors = ["#010006","#828085","#8A0000","#7C8600","#008703","#00817D","#1C007B","#88007E","#7D833B","#003E46","#0571FF","#003C83","#9800FF","#873800",
-		"#FEFEFE","#BFBEC1","#FF0000","#FAFF00","#00FF08","#00FFFB","#4000FB","#FF00FF","#FAFF7C","#00FF80","#44FFFF","#8F68FF","#FF0078","#FF732C"]
-		document.querySelector("#menu-item").addEventListener("mousedown",(e)=> {
-			console.log(e)
-		})
-		_colors.forEach(_color_=> {
-			const el = document.createElement("div")
-			el.classList = "border-box"
-			el.id = "color-box"
-			el.style.backgroundColor = _color_
-			el.addEventListener("mousedown", (e)=>{
-				console.log(e)
-				if (e.button == 0) {
-					primaryColor = _color_	
-					document.querySelector(".select-color-1").style.backgroundColor = primaryColor
-				} else if ( e.button == 2 ) {
-					secondaryColor = _color_
-					document.querySelector(".select-color-2").style.backgroundColor = secondaryColor
-				} 
-			})
-			selectColorsArea.appendChild(el)
-		})
 
-		document.querySelector(".selected-color").addEventListener("click",()=> {
-			let tempColor = primaryColor;
-			primaryColor = secondaryColor;
-			secondaryColor = tempColor;
-			document.querySelector(".select-color-1").style.backgroundColor = primaryColor
-			document.querySelector(".select-color-2").style.backgroundColor = secondaryColor
-		})
-		// const colorBoxes = document.querySelectorAll("#color-box")
-		// colorBoxes.forEach((colorBox)=> {
-			
-		// })
-		const tools = document.querySelectorAll("#tool")
-
-		tools.forEach(tool => {
-			tool.addEventListener("click",() => {
-				stage.removeAllEventListeners();
-				const toolName = tool.dataset.toolName
-				// document.getElementById("myCanvas").style.cursor = `url(icons/tools/${toolName}.svg), auto;`
-				switch(toolName) {
-					case "pencil":
-						// console.log("SAD")
-						stage.addEventListener("stagemousedown", pencil_handleMouseDown);
-						stage.addEventListener("stagemouseup", pencil_handleMouseUp);
-						break;
-					case "eraser":
-						stage.addEventListener("stagemousedown", eraser_handleMouseDown);
-						stage.addEventListener("stagemouseup", eraser_handleMouseUp);
-						break;
-					case "color-picker":
-						canvas.addEventListener('click', function(event) {
-							pick(event);
-						});
-
-				}
-				tools.forEach(_tool=> {
-					
-					if ( toolName == _tool.dataset.toolName ) {
-						tool.classList.remove("selected")
-						tool.classList.add("selected")
-					} else {
-						_tool.classList.remove("selected")
-					}
-				})
-			})
-		})
-
+		
 	</script>
 </body>
 </html>
