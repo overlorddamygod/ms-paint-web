@@ -3,8 +3,9 @@ function pencil_handleMouseDown(event) {
     return;
   }
 
-  setColorByMouseButton(event);
+  setColorByMouseButton(event.nativeEvent);
   state.saveState(canvas);
+  // drawingCanvas.cache(0,0, stageW,stageH)
 
   oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
   oldMidPt = oldPt.clone();
@@ -15,6 +16,7 @@ function pencil_handleMouseMove(event) {
   if (!event.primary) {
     return;
   }
+  
   createPoints(stroke, color);
   stage.update();
 }
@@ -43,6 +45,8 @@ function pencil_handleMouseUp(event) {
   if (!event.primary) {
     return;
   }
+  // drawingCanvas.uncache()
+
   stage.removeEventListener("stagemousemove", pencil_handleMouseMove);
 }
 function eraser_handleMouseDown(event) {
@@ -76,7 +80,7 @@ function rect_handleMouseDown(event) {
   if (!event.primary) {
     return;
   }
-  setColorByMouseButton(event);
+  setColorByMouseButton(event.nativeEvent);
 
   oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
   oldMidPt = oldPt.clone();
@@ -139,22 +143,6 @@ function rect_handleMouseMove(event) {
   prevy = h;
   stage.update();
 }
-
-function colorPicker_Click(event) {
-  const rect = canvas.getBoundingClientRect();
-  const x = event.layerX - rect.left;
-  const y = event.layerY - rect.top;
-  const pixel = ctx.getImageData(x, y, 1, 1);
-  const data = pixel.data;
-
-  // console.log(x,y)
-
-  const pickedColor = rgb2hex(
-    `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`
-  );
-  // console.log(pickedColor)
-  setSelectedColor(pickedColor, null);
-}
 function rect_handleMouseUp(event) {
   if (!event.primary) {
     return;
@@ -162,6 +150,34 @@ function rect_handleMouseUp(event) {
   prevx = 0;
   prevy = 0;
   stage.removeEventListener("stagemousemove", rect_handleMouseMove);
+}
+
+function colorPicker_Click(event) {
+  const x = event.layerX
+  const y = event.layerY
+  const pixel = ctx.getImageData(x, y, 1, 1);
+  const data = pixel.data;
+
+  const pickedColor = rgb2hex(
+    `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`
+  );
+
+  setSelectedColor(pickedColor, null);
+  document.querySelector(`#tool[data-tool-name=${state.recentTool}]`).click()
+}
+
+function fill_Click(event) {
+  state.saveState(canvas);
+
+  const x = event.layerX
+  const y = event.layerY
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+  setColorByMouseButton(event);
+
+  const col = hexToRGB(color)
+  floodFill(imageData, col, x, y)
+  ctx.putImageData(imageData, 0, 0)
 }
 
 const mouseHandlers = {
@@ -182,6 +198,9 @@ const mouseHandlers = {
   },
   colorPicker: {
     click: colorPicker_Click,
+  },
+  fill: {
+    click: fill_Click,
   },
 };
 
@@ -222,4 +241,4 @@ window.addEventListener("paste", async function(e) {
     console.log(file)
     // let objectUrl = URL.createObjectURL(file);
     // do something with url here
-  });
+});

@@ -59,7 +59,13 @@ tools.forEach((tool) => {
   tool.addEventListener("click", () => {
     stage.removeAllEventListeners();
     canvas.removeEventListener("click", mouseHandlers.colorPicker.click);
+    canvas.removeEventListener("mousedown", mouseHandlers.fill.click);
+
     const toolName = tool.dataset.toolName;
+
+    if ( toolName != "color-picker") {
+      state.recentTool = toolName
+    }
 
     switch (toolName) {
       case "pencil":
@@ -78,6 +84,9 @@ tools.forEach((tool) => {
         break;
       case "color-picker":
         canvas.addEventListener("click", mouseHandlers.colorPicker.click);
+        break;
+      case "fill":
+        canvas.addEventListener("mousedown", mouseHandlers.fill.click);
         break;
       case "rect":
         stage.addEventListener("stagemousedown", mouseHandlers.rect.mouseDown);
