@@ -88,7 +88,8 @@ function line_handleMouseDown(event) {
     setColorByMouseButton(event.nativeEvent);
 
     oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
-
+    // oldMidPt = oldPt.clone()
+    console.log(oldMidPt)
     state.saveState(canvas);
     state.setState69(canvas);
 
@@ -101,14 +102,27 @@ function line_handleMouseMove(event) {
     return;
   }
 
-  drawingCanvas.graphics
-  .clear()
-  .setStrokeStyle(stroke)
-  .beginStroke(color)
-  .moveTo(oldPt.x,oldPt.y)
-  .lineTo(stage.mouseX, stage.mouseY)
+  function isBetween(point1, point2, val = 0) {
+    return point1.mouseX >= point2.x - val && point1.mouseX <= point2.x + val && point1.mouseY >= point2.y - val && point1.mouseY <= point2.y + val
+  }
 
-  renderCanvas(state.getState69(), canvas);
+  if ( !oldMidPt ) {
+    oldMidPt = new createjs.Point(stage.mouseX, stage.mouseY);
+  } 
+  // console.log(oldMidPt)
+  if ( !isBetween(stage, oldMidPt, 1) ) {
+    renderCanvas(state.getState69(), canvas);
+    drawingCanvas.graphics
+    .clear()
+    .setStrokeStyle(stroke)
+    .beginStroke(color)
+    .moveTo(oldPt.x,oldPt.y)
+    .lineTo(stage.mouseX, stage.mouseY)
+  }
+  // drawingCanvas.updateCache("source-over");
+  
+  oldMidPt = new createjs.Point(stage.mouseX, stage.mouseY);
+  
   stage.update();
 }
 
@@ -117,13 +131,7 @@ function line_handleMouseUp(event) {
     return;
   }
   state.setState69(null);
-
-  drawingCanvas.graphics
-  .clear()
-  .setStrokeStyle(stroke)
-  .beginStroke(color)
-  .moveTo(oldPt.x,oldPt.y)
-  .lineTo(stage.mouseX, stage.mouseY)
+  oldMidPt = null
 
   stage.update();
   stage.removeEventListener("stagemousemove", line_handleMouseMove);
