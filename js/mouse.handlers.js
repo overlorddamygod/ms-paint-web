@@ -5,7 +5,6 @@ function pencil_handleMouseDown(event) {
 
   setColorByMouseButton(event.nativeEvent);
   state.saveState(canvas);
-  // drawingCanvas.cache(0,0, stageW,stageH)
 
   oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
   oldMidPt = oldPt.clone();
@@ -45,8 +44,6 @@ function pencil_handleMouseUp(event) {
   if (!event.primary) {
     return;
   }
-  // drawingCanvas.uncache()
-
   stage.removeEventListener("stagemousemove", pencil_handleMouseMove);
 }
 function eraser_handleMouseDown(event) {
@@ -76,81 +73,62 @@ function eraser_handleMouseUp(event) {
   stage.removeEventListener("stagemousemove", eraser_handleMouseMove);
 }
 
-function rect_handleMouseDown(event) {
+const rect_handleMouseMove = shapeMouseMove("rect")
+const rect_handleMouseDown = shapeMouseDown("rect", rect_handleMouseMove)
+const rect_handleMouseUp = shapeMouseUp("rect", rect_handleMouseMove)
+
+const ellipse_handleMouseMove = shapeMouseMove("ellipse")
+const ellipse_handleMouseDown = shapeMouseDown("ellipse", ellipse_handleMouseMove)
+const ellipse_handleMouseUp = shapeMouseUp("ellipse", ellipse_handleMouseMove)
+
+function line_handleMouseDown(event) {
+    if (!event.primary) {
+      return;
+    }
+    setColorByMouseButton(event.nativeEvent);
+
+    oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
+
+    state.saveState(canvas);
+    state.setState69(canvas);
+
+    stage.addEventListener("stagemousemove", line_handleMouseMove);
+};
+
+
+function line_handleMouseMove(event) {
   if (!event.primary) {
     return;
   }
-  setColorByMouseButton(event.nativeEvent);
-
-  oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
-  oldMidPt = oldPt.clone();
-  cloneDrawingCanvas = drawingCanvas.clone();
-
-  // console.log(e)
-  // if ( rec )
-  // rec.visible =false
-  // rec = new createjs.Shape();
-  // console.log(event.stageX)
-  // rec.graphics.setStrokeStyle(2).beginStroke(color).drawRect(event.stageX, event.stageY, 20,20);
-  // rec.x = 100
-
-  // stage.addChild(rec);
-  // stage.removeAllChildren()
-  // stage.update()
-  // stage.addChild(cloneDrawingCanvas)
-  stage.addEventListener("stagemousemove", rect_handleMouseMove);
-}
-
-function rect_handleMouseMove(event) {
-  if (!event.primary) {
-    return;
-  }
-  w = stage.mouseX - oldPt.x;
-  h = stage.mouseY - oldPt.y;
-  console.log(event);
-
-  // if (a <2) {
-  // 	// a++
-  // stage.removeChild(rec)
-
-  // console.log(stage.children.length)
-  // rec.graphics.clear()
-  // if (prevx)
-  // drawingCanvas.graphics.setStrokeStyle(1).beginStroke(color).rect(oldMidPt.x, oldMidPt.y, prevx,prevy);
-  // stage.update()
-  stage.removeAllChildren();
-  console.log(stage.children.length);
-  stage.autoClear = true;
-  stage.update();
-  stage.autoClear = false;
-  drawingCanvas = cloneDrawingCanvas;
-  stage.addChild(drawingCanvas);
 
   drawingCanvas.graphics
-    .setStrokeStyle(1)
-    .beginStroke(color)
-    .rect(oldMidPt.x, oldMidPt.y, w, h);
+  .clear()
+  .setStrokeStyle(stroke)
+  .beginStroke(color)
+  .moveTo(oldPt.x,oldPt.y)
+  .lineTo(stage.mouseX, stage.mouseY)
 
-  // }
-  // console.log(rec.getInstructions())
-  // oldPt.x = stage.mouseX;
-  // oldPt.y = stage.mouseY;
-  // rec.x =
-  // oldMidPt.x = midPt.x;
-  // oldMidPt.y = midPt.y;
-  // stage.addChild(rec)
-  prevx = w;
-  prevy = h;
+  renderCanvas(state.getState69(), canvas);
   stage.update();
 }
-function rect_handleMouseUp(event) {
+
+function line_handleMouseUp(event) {
   if (!event.primary) {
     return;
   }
-  prevx = 0;
-  prevy = 0;
-  stage.removeEventListener("stagemousemove", rect_handleMouseMove);
+  state.setState69(null);
+
+  drawingCanvas.graphics
+  .clear()
+  .setStrokeStyle(stroke)
+  .beginStroke(color)
+  .moveTo(oldPt.x,oldPt.y)
+  .lineTo(stage.mouseX, stage.mouseY)
+
+  stage.update();
+  stage.removeEventListener("stagemousemove", line_handleMouseMove);
 }
+
 
 function colorPicker_Click(event) {
   const x = event.layerX
@@ -195,6 +173,16 @@ const mouseHandlers = {
     mouseDown: rect_handleMouseDown,
     mouseMove: rect_handleMouseMove,
     mouseUp: rect_handleMouseUp,
+  },
+  ellipse: {
+    mouseDown: ellipse_handleMouseDown,
+    mouseMove: ellipse_handleMouseMove,
+    mouseUp: ellipse_handleMouseUp,
+  },
+  line: {
+    mouseDown: line_handleMouseDown,
+    mouseMove: line_handleMouseMove,
+    mouseUp: line_handleMouseUp,
   },
   colorPicker: {
     click: colorPicker_Click,

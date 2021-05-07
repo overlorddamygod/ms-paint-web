@@ -3,7 +3,7 @@ const isMac = window.navigator.userAgent.indexOf("Mac") != -1
 const state = {
   redo_list: [],
   undo_list: [],
-  state69: [],
+  state69: null,
   recentTool: "pencil",
   saveState: function(_canvas, list, keep_redo) {
     keep_redo = keep_redo || false;
@@ -32,8 +32,17 @@ const state = {
       img.src = restore_state;
       img.onload = function() {
         ctx.clearRect(0, 0, _canvas.width, _canvas.height);
-        ctx.drawImage(img, 0, 0, _canvas.width, _canvas.height, 0, 0, _canvas.width, _canvas.height);  
+        ctx.drawImage(img, 0, 0, _canvas.width, _canvas.height, 0, 0, _canvas.width, _canvas.height);
       }
     }
   },
+  getRecentState() {
+    return this.undo_list[this.undo_list - 1]
+  },
+  getState69() {
+    return this.state69
+  },
+  setState69(canvas) {
+    this.state69 = canvas ? canvas.toDataURL() : null
+  }
 }

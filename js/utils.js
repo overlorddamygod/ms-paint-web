@@ -52,6 +52,17 @@ function setColorByMouseButton(event) {
   }
 }
 
+function renderCanvas(_state,_canvas) {
+  // if ( _state ) {
+    const img = new Image();
+    img.src = _state;
+    img.onload = function() {
+      ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+      ctx.drawImage(img, 0, 0, _canvas.width, _canvas.height, 0, 0, _canvas.width, _canvas.height);
+    }
+  // }
+}
+
 function getOpenFileName() {
     return window.document.title.replace("- Paint","").trim()
 }

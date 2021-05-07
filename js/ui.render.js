@@ -92,6 +92,14 @@ tools.forEach((tool) => {
         stage.addEventListener("stagemousedown", mouseHandlers.rect.mouseDown);
         stage.addEventListener("stagemouseup", mouseHandlers.rect.mouseUp);
         break;
+      case "ellipse":
+        stage.addEventListener("stagemousedown", mouseHandlers.ellipse.mouseDown);
+        stage.addEventListener("stagemouseup", mouseHandlers.ellipse.mouseUp);
+        break;
+      case "line":
+        stage.addEventListener("stagemousedown", mouseHandlers.line.mouseDown);
+        stage.addEventListener("stagemouseup", mouseHandlers.line.mouseUp);
+        break;
       case "brush":
         break;
       default:
