@@ -1,6 +1,6 @@
-# [MS-Paint-Recreate](https://overlorddamygod.github.io/ms-paint-recreate)
+# [MS-Paint-Web](https://overlorddamygod.github.io/ms-paint-recreate)
 
-Recreating the old Microsoft paint in Browser
+Creating the old Microsoft paint for Web
 
 ### Techs used :
     * Html, Css, Js
