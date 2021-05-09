@@ -118,19 +118,17 @@ main {
 }
 
 #choice {
-  /* background-color: #F8FCED; */
   padding: 0.5rem;
   margin: 0.05rem 0.05rem;
   border: 1px solid #8b999c;
   display: flex;
   align-items: center;
   cursor: pointer;
-  /* border-radius: 5px; */
+  height: 1.5rem;
 }
 
 #choice svg {
   width: 100%;
-  /* height: 1rem; */
 }
 
 .draw-area {
@@ -139,12 +137,14 @@ main {
   max-height: 40rem;
   overflow: auto;
   position: relative;
+  border: 1px solid #000;
 }
 
 #myCanvas {
   /* border: 1px solid black; */
   background-color: white;
   resize: both;
+  position: relative;
 }
 
 #myCanvasTemp {
@@ -211,7 +211,6 @@ main {
   /* background-color: red; */
   height: 1.8rem;
 }
-
 /* Info Area */
 
 .info-area {
