@@ -51,17 +51,24 @@ const roundedrect_handleMouseUp = shapeMouseUp("rounded-rect", roundedrect_handl
 
 function line_handleMouseMove(e) {
   if (!drawing) return false;
+  // console.log(e)
   _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
   _ctx.beginPath();
   _ctx.moveTo(oldPt.x, oldPt.y);
-  _ctx.lineTo(e.layerX, e.layerY);
+  if ( state.shift ) {
+    _ctx.lineTo(e.layerX, oldPt.y);
+  } else {
+    _ctx.lineTo(e.layerX, e.layerY);
+  }
   _ctx.stroke();
   _ctx.closePath();
 }
+
 const line_handleMouseDown = createMouseDownEvent(
   "line",
   (e) => {
+    shift = false
     oldPt = createPoint(e.layerX, e.layerY);
   },
   line_handleMouseMove
@@ -70,6 +77,7 @@ const line_handleMouseDown = createMouseDownEvent(
 const line_handleMouseUp = createMouseUpEvent("line", line_handleMouseMove);
 
 function colorPicker_Click(event) {
+  
   const x = event.layerX;
   const y = event.layerY;
   const pixel = ctx.getImageData(x, y, 1, 1);
@@ -222,3 +230,21 @@ window.addEventListener("paste", async function (e) {
   // let objectUrl = URL.createObjectURL(file);
   // do something with url here
 });
+
+
+function shiftKeyDown(e) {
+  if ( e.key == "Shift") {
+    console.log("Shift pressed")
+    state.shift = true;
+  }
+}
+
+function shiftKeyUp(e) {
+  if (e.key == "Shift") {
+    console.log("Shift released")
+    state.shift = false;
+  }
+}
+
+window.addEventListener("keydown", shiftKeyDown);
+window.addEventListener("keyup", shiftKeyUp);

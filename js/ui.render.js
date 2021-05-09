@@ -97,7 +97,7 @@ tools.forEach((tool) => {
         _canvas.addEventListener("click", mouseHandlers.colorPicker.click);
         break;
       case "fill":
-        _canvas.addEventListener("mousedown", mouseHandlers.fill.click);
+        _canvas.addEventListener("click", mouseHandlers.fill.click);
         break;
       case "rect":
         _canvas.addEventListener("mousedown", mouseHandlers.rect.mouseDown);

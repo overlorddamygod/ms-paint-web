@@ -2,6 +2,7 @@ const isMac = window.navigator.userAgent.indexOf("Mac") != -1;
 
 const state = {
   zoomed: false,
+  shift: false,
   redo_list: [],
   undo_list: [],
   state69: null,

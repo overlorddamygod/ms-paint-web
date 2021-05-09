@@ -24,6 +24,8 @@ function createMouseUpEvent(toolName, mouseMove) {
 
     mouseMove(e);
     _ctx.closePath();
+    // window.removeEventListener("keydown", shiftKeyDown);
+    // window.removeEventListener("keyup", shiftKeyUp);
 
     updateOriginalCanvas();
     drawing = false;
