@@ -96,6 +96,51 @@ function fill_Click(event) {
   ctx.putImageData(imageData, 0, 0);
 }
 
+function magnify_Click(event) {
+  let scaleFactor = 1.5;
+  const img = new Image();
+  img.src = canvas.toDataURL();
+  img.onload = function () {
+    if (!state.zoomed) {
+      canvas.width *= scaleFactor;
+      canvas.height *= scaleFactor;
+    } else {
+      canvas.width /= scaleFactor;
+      canvas.height /= scaleFactor;
+    }
+    state.zoomed = !state.zoomed;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    console.log(img.src);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+    _canvas.width = canvas.width;
+    _canvas.height = canvas.height;
+
+    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+  };
+
+  // const x = event.layerX;
+  // const y = event.layerY;
+  // const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+  // setColorByMouseButton(event);
+
+  // const col = hexToRGB(color);
+  // floodFill(imageData, col, x, y);
+  // ctx.putImageData(imageData, 0, 0);
+}
+
 const mouseHandlers = {
   pencil: {
     mouseDown: pencil_handleMouseDown,
@@ -122,11 +167,19 @@ const mouseHandlers = {
     mouseMove: line_handleMouseMove,
     mouseUp: line_handleMouseUp,
   },
+  // word: {
+  //   mouseDown: word_handleMouseDown,
+  //   mouseMove: word_handleMouseMove,
+  //   mouseUp: word_handleMouseUp,
+  // },
   colorPicker: {
     click: colorPicker_Click,
   },
   fill: {
     click: fill_Click,
+  },
+  magnify: {
+    click: magnify_Click,
   },
 };
 

@@ -139,7 +139,6 @@ main {
   max-height: 40rem;
   overflow: auto;
   position: relative;
-  border: 1px solid #000;
 }
 
 #myCanvas {
@@ -212,6 +211,7 @@ main {
   /* background-color: red; */
   height: 1.8rem;
 }
+
 /* Info Area */
 
 .info-area {
@@ -219,14 +219,4 @@ main {
   align-items: center;
   height: 2rem;
   padding-left: 0.5rem;
-}
-
-.images {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.images img {
-  width: 300px;
-  height: 200px;
 }

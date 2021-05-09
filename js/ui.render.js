@@ -70,6 +70,9 @@ tools.forEach((tool) => {
     _canvas.removeEventListener("mouseup", mouseHandlers.eraser.mouseUp);
     _canvas.removeEventListener("mousedown", mouseHandlers.line.mouseDown);
     _canvas.removeEventListener("mouseup", mouseHandlers.line.mouseUp);
+    _canvas.removeEventListener("click", mouseHandlers.magnify.click);
+    // _canvas.removeEventListener("mousedown", mouseHandlers.word.mouseDown);
+    // _canvas.removeEventListener("mouseup", mouseHandlers.word.mouseUp);
 
     const toolName = tool.dataset.toolName;
 
@@ -104,6 +107,9 @@ tools.forEach((tool) => {
       case "line":
         _canvas.addEventListener("mousedown", mouseHandlers.line.mouseDown);
         _canvas.addEventListener("mouseup", mouseHandlers.line.mouseUp);
+        break;
+      case "magnify":
+        _canvas.addEventListener("click", mouseHandlers.magnify.click);
         break;
       case "brush":
         break;
