@@ -4,8 +4,6 @@ Recreating the old Microsoft paint in Browser
 
 ### Techs used :
     * Html, Css, Js
-    * Canvas library - Easeljs (https://www.createjs.com/easeljs)
-
 
 #### References:
     * https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename

@@ -1,3 +1,7 @@
+function createPoint(x,y) {
+  return { x, y }
+}
+
 // Reference - https://jsfiddle.net/Mottie/xcqpF/1/light/
 function rgb2hex(rgb) {
   rgb = rgb.match(
@@ -77,13 +81,20 @@ function openFile(file) {
 
     var reader = new FileReader();
     reader.onloadend = function() {
+      
         img.src = reader.result;
+        console.log(img.src)
         img.onload = function() {
             canvas.width = img.width;
             canvas.height = img.height;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);  
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height); 
+            
+            _canvas.width = canvas.width;
+            _canvas.height = canvas.height;
+
+            _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
         }
     }
     reader.readAsDataURL(file);

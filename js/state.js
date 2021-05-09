@@ -12,7 +12,7 @@ const state = {
     }
     
     const l = (list || this.undo_list)
-    if ( l.length >10 ) {
+    if ( l.length > 20 ) {
       console.log("Cleaning garbagessss")
       for ( let i = 0; i < 6; i++ ) l.shift()
     }
@@ -37,12 +37,12 @@ const state = {
     }
   },
   getRecentState() {
-    return this.undo_list[this.undo_list - 1]
+    return this.undo_list[this.undo_list.length - 1]
   },
   getState69() {
     return this.state69
   },
   setState69(canvas) {
-    this.state69 = canvas ? canvas.toDataURL() : null
+    this.state69 = canvas? canvas.toDataURL() : null
   }
 }

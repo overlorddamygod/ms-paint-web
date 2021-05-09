@@ -57,48 +57,53 @@ const tools = document.querySelectorAll("#tool");
 
 tools.forEach((tool) => {
   tool.addEventListener("click", () => {
-    stage.removeAllEventListeners();
-    canvas.removeEventListener("click", mouseHandlers.colorPicker.click);
-    canvas.removeEventListener("mousedown", mouseHandlers.fill.click);
+    // stage.removeAllEventListeners();
+    _canvas.removeEventListener("click", mouseHandlers.colorPicker.click);
+    _canvas.removeEventListener("mousedown", mouseHandlers.fill.click);
+    _canvas.removeEventListener("mousedown", mouseHandlers.rect.mouseDown);
+    _canvas.removeEventListener("mouseup", mouseHandlers.rect.mouseUp);
+    _canvas.removeEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
+    _canvas.removeEventListener("mouseup", mouseHandlers.ellipse.mouseUp);
+    _canvas.removeEventListener("mousedown", mouseHandlers.pencil.mouseDown);
+    _canvas.removeEventListener("mouseup", mouseHandlers.pencil.mouseUp);
+    _canvas.removeEventListener("mousedown", mouseHandlers.eraser.mouseDown);
+    _canvas.removeEventListener("mouseup", mouseHandlers.eraser.mouseUp);
+    _canvas.removeEventListener("mousedown", mouseHandlers.line.mouseDown);
+    _canvas.removeEventListener("mouseup", mouseHandlers.line.mouseUp);
 
     const toolName = tool.dataset.toolName;
 
+    console.log("Clicked",toolName)
     if ( toolName != "color-picker") {
       state.recentTool = toolName
     }
 
     switch (toolName) {
       case "pencil":
-        stage.addEventListener(
-          "stagemousedown",
-          mouseHandlers.pencil.mouseDown
-        );
-        stage.addEventListener("stagemouseup", mouseHandlers.pencil.mouseUp);
+        _canvas.addEventListener("mousedown", mouseHandlers.pencil.mouseDown);
+        _canvas.addEventListener("mouseup", mouseHandlers.pencil.mouseUp);
         break;
       case "eraser":
-        stage.addEventListener(
-          "stagemousedown",
-          mouseHandlers.eraser.mouseDown
-        );
-        stage.addEventListener("stagemouseup", mouseHandlers.eraser.mouseUp);
+        _canvas.addEventListener("mousedown", mouseHandlers.eraser.mouseDown);
+        _canvas.addEventListener("mouseup", mouseHandlers.eraser.mouseUp);
         break;
       case "color-picker":
-        canvas.addEventListener("click", mouseHandlers.colorPicker.click);
+        _canvas.addEventListener("click", mouseHandlers.colorPicker.click);
         break;
       case "fill":
-        canvas.addEventListener("mousedown", mouseHandlers.fill.click);
+        _canvas.addEventListener("mousedown", mouseHandlers.fill.click);
         break;
       case "rect":
-        stage.addEventListener("stagemousedown", mouseHandlers.rect.mouseDown);
-        stage.addEventListener("stagemouseup", mouseHandlers.rect.mouseUp);
+        _canvas.addEventListener("mousedown", mouseHandlers.rect.mouseDown);
+        _canvas.addEventListener("mouseup", mouseHandlers.rect.mouseUp);
         break;
       case "ellipse":
-        stage.addEventListener("stagemousedown", mouseHandlers.ellipse.mouseDown);
-        stage.addEventListener("stagemouseup", mouseHandlers.ellipse.mouseUp);
+        _canvas.addEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
+        _canvas.addEventListener("mouseup", mouseHandlers.ellipse.mouseUp);
         break;
       case "line":
-        stage.addEventListener("stagemousedown", mouseHandlers.line.mouseDown);
-        stage.addEventListener("stagemouseup", mouseHandlers.line.mouseUp);
+        _canvas.addEventListener("mousedown", mouseHandlers.line.mouseDown);
+        _canvas.addEventListener("mouseup", mouseHandlers.line.mouseUp);
         break;
       case "brush":
         break;

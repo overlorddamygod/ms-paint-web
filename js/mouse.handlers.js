@@ -1,77 +1,27 @@
-function pencil_handleMouseDown(event) {
-  if (!event.primary) {
-    return;
-  }
-
-  setColorByMouseButton(event.nativeEvent);
-  state.saveState(canvas);
-
-  oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
-  oldMidPt = oldPt.clone();
-  stage.addEventListener("stagemousemove", pencil_handleMouseMove);
+function pencil_handleMouseMove(e) {
+  if ( !drawing ) return
+  _ctx.lineTo(e.layerX, e.layerY);
+  _ctx.stroke();
 }
+const pencil_handleMouseDown = createMouseDownEvent("Pencil", e => {
+  _ctx.lineCap = "round";
+  _ctx.beginPath();
+  _ctx.moveTo(e.layerX, e.layerY);
+}, pencil_handleMouseMove)
 
-function pencil_handleMouseMove(event) {
-  if (!event.primary) {
-    return;
-  }
-  
-  createPoints(stroke, color);
-  stage.update();
+const pencil_handleMouseUp = createMouseUpEvent("Pencil", pencil_handleMouseMove)
+
+function eraser_handleMouseMove(e) {
+  if ( !drawing ) return
+  _ctx.lineTo(e.layerX, e.layerY);
+  _ctx.stroke();
 }
-
-function createPoints(_stroke, _color) {
-  const midPt = new createjs.Point(
-    (oldPt.x + stage.mouseX) >> 1,
-    (oldPt.y + stage.mouseY) >> 1
-  );
-
-  drawingCanvas.graphics
-    .clear()
-    .setStrokeStyle(_stroke, "round", "round")
-    .beginStroke(_color)
-    .moveTo(midPt.x, midPt.y)
-    .curveTo(oldPt.x, oldPt.y, oldMidPt.x, oldMidPt.y);
-
-  oldPt.x = stage.mouseX;
-  oldPt.y = stage.mouseY;
-
-  oldMidPt.x = midPt.x;
-  oldMidPt.y = midPt.y;
-}
-
-function pencil_handleMouseUp(event) {
-  if (!event.primary) {
-    return;
-  }
-  stage.removeEventListener("stagemousemove", pencil_handleMouseMove);
-}
-function eraser_handleMouseDown(event) {
-  // console.log(event)
-  if (!event.primary) {
-    return;
-  }
-  state.saveState(canvas);
-
-  oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
-  oldMidPt = oldPt.clone();
-  stage.addEventListener("stagemousemove", eraser_handleMouseMove);
-}
-function eraser_handleMouseMove(event) {
-  if (!event.primary) {
-    return;
-  }
-
-  createPoints(stroke * 3.5, "#ffffff");
-
-  stage.update();
-}
-function eraser_handleMouseUp(event) {
-  if (!event.primary) {
-    return;
-  }
-  stage.removeEventListener("stagemousemove", eraser_handleMouseMove);
-}
+const eraser_handleMouseDown = createMouseDownEvent("eraser", e => {
+  _ctx.lineCap = "round";
+  _ctx.beginPath();
+  _ctx.moveTo(e.layerX, e.layerY);
+}, eraser_handleMouseMove)
+const eraser_handleMouseUp = createMouseUpEvent("eraser", eraser_handleMouseMove)
 
 const rect_handleMouseMove = shapeMouseMove("rect")
 const rect_handleMouseDown = shapeMouseDown("rect", rect_handleMouseMove)
@@ -81,62 +31,21 @@ const ellipse_handleMouseMove = shapeMouseMove("ellipse")
 const ellipse_handleMouseDown = shapeMouseDown("ellipse", ellipse_handleMouseMove)
 const ellipse_handleMouseUp = shapeMouseUp("ellipse", ellipse_handleMouseMove)
 
-function line_handleMouseDown(event) {
-    if (!event.primary) {
-      return;
-    }
-    setColorByMouseButton(event.nativeEvent);
+function line_handleMouseMove(e) {
+  if ( !drawing ) return false
+    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
-    oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
-    // oldMidPt = oldPt.clone()
-    console.log(oldMidPt)
-    state.saveState(canvas);
-    state.setState69(canvas);
-
-    stage.addEventListener("stagemousemove", line_handleMouseMove);
-};
-
-
-function line_handleMouseMove(event) {
-  if (!event.primary) {
-    return;
-  }
-
-  function isBetween(point1, point2, val = 0) {
-    return point1.mouseX >= point2.x - val && point1.mouseX <= point2.x + val && point1.mouseY >= point2.y - val && point1.mouseY <= point2.y + val
-  }
-
-  if ( !oldMidPt ) {
-    oldMidPt = new createjs.Point(stage.mouseX, stage.mouseY);
-  } 
-  // console.log(oldMidPt)
-  if ( !isBetween(stage, oldMidPt, 1) ) {
-    renderCanvas(state.getState69(), canvas);
-    drawingCanvas.graphics
-    .clear()
-    .setStrokeStyle(stroke)
-    .beginStroke(color)
-    .moveTo(oldPt.x,oldPt.y)
-    .lineTo(stage.mouseX, stage.mouseY)
-  }
-  // drawingCanvas.updateCache("source-over");
-  
-  oldMidPt = new createjs.Point(stage.mouseX, stage.mouseY);
-  
-  stage.update();
+    _ctx.beginPath();
+    _ctx.moveTo(oldPt.x, oldPt.y);
+    _ctx.lineTo(e.layerX, e.layerY);
+    _ctx.stroke();
+    _ctx.closePath();
 }
+const line_handleMouseDown = createMouseDownEvent("line", e => {
+  oldPt = createPoint(e.layerX, e.layerY);
+}, line_handleMouseMove)
 
-function line_handleMouseUp(event) {
-  if (!event.primary) {
-    return;
-  }
-  state.setState69(null);
-  oldMidPt = null
-
-  stage.update();
-  stage.removeEventListener("stagemousemove", line_handleMouseMove);
-}
-
+const line_handleMouseUp = createMouseUpEvent("line", line_handleMouseMove)
 
 function colorPicker_Click(event) {
   const x = event.layerX
