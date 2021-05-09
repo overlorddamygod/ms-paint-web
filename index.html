@@ -1,138 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Untitled.png - Paint</title>
-	<link rel = "icon" href="./icons/logo.webp" type = "image/x-icon">
-	<link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-	<div class="menu-bar border">
-		<div id="menu-item">File</div>
-		<div id="menu-item">Open</div>
-		<div id="menu-item">Save</div>
-		<div id="menu-item">Edit</div>
-		<div id="menu-item">View</div>
-		<div id="menu-item">Image</div>
-		<div id="menu-item">Colors</div>
-		<div id="menu-item">Help</div>
-	</div>
-	<main>
-		<div class="tools-draw">
-			<div class="tools-area border">
-				<div id="tools">
-					<div id="tool" data-tool-name="fill">
-						<abbr title="fill">
-							<img src="./icons/tools/fill.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="word">
-						<abbr title="word">
-							<img src="./icons/tools/word.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="eraser">
-						<abbr title="eraser">
-							<img src="./icons/tools/eraser.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="fill">
-						<abbr title="fill">
-							<img src="./icons/tools/fill.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="color-picker">
-						<abbr title="color">
-							<img src="./icons/tools/color-picker.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="curve">
-						<abbr title="curve">
-							<img src="./icons/tools/curve.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="pencil" class="selected">
-						<abbr title="selected">
-							<img src="./icons/tools/pencil.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="brush">
-						<abbr title="brush">
-							<img src="./icons/tools/brush.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="polygon">
-						<abbr title="polygon">
-							<img src="./icons/tools/polygon.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="word">
-						<abbr title="word">
-							<img src="./icons/tools/word.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="line">
-						<abbr title="line">
-							<img src="./icons/tools/line.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="curve">
-						<abbr title="curve">
-							<img src="./icons/tools/curve.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="rect">
-						<abbr title="rect">
-							<img src="./icons/tools/rect.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="polygon">
-						<abbr title="polygon">
-							<img src="./icons/tools/polygon.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="ellipse">
-						<abbr title="ellipse">
-							<img src="./icons/tools/ellipse.svg" alt="" srcset="">
-						</abbr>
-					</div>
-					<div id="tool" data-tool-name="quad">
-						<abbr title="quad">
-							<img src="./icons/tools/quad.svg" alt="" srcset="">
-						</abbr>
-					</div>
-				</div>
-				<div class="choice-area border">
-					<!-- Stroke Select Area -->
-				</div>
-			</div>
-			<div class="draw-area border">
-				<canvas id="myCanvas" width="960" height="500"></canvas>
-			</div>
-		</div>
-		<div class="colors-area border">
-			<div class="selected-color border-box">
-				<div class="border-box select-color-1" id="color-box"></div>
-				<div class="border-box select-color-2" id="color-box"></div>
-			</div>
-			<div class="select-colors">
-				<!-- Available Colors -->
-			</div>
-		</div>
-		<div class="info-area border">For Help, click Help Topics on the Help Menu.</div>
-	</main>
-	<!-- Scripts -->
-	<script src="./js/utils.js"></script>
-	<script src="./js/state.js"></script>
-	<script src="./js/init.js"></script>
-	<script src="./js/handlers.utils.js"></script>
-	<script src="./js/shape.handlers.js"></script>
-	<script src="./js/ui.render.js"></script>
-	<script src="./js/mouse.handlers.js"></script>
-	<script>
-		document.querySelector(`#tool[data-tool-name=pencil]`).click()
-	</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untitled.png - Paint</title>
+    <link rel="icon" href="./icons/logo.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="menu-bar border">
+      <div id="menu-item">File</div>
+      <div id="menu-item">Open</div>
+      <div id="menu-item">Save</div>
+      <div id="menu-item">Edit</div>
+      <div id="menu-item">View</div>
+      <div id="menu-item">Image</div>
+      <div id="menu-item">Colors</div>
+      <div id="menu-item">Help</div>
+    </div>
+    <main>
+      <div class="tools-draw">
+        <div class="tools-area border">
+          <div id="tools">
+            <div id="tool" data-tool-name="fill">
+              <abbr title="fill">
+                <img src="./icons/tools/fill.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="word">
+              <abbr title="word">
+                <img src="./icons/tools/word.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="eraser">
+              <abbr title="eraser">
+                <img src="./icons/tools/eraser.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="fill">
+              <abbr title="fill">
+                <img src="./icons/tools/fill.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="color-picker">
+              <abbr title="color">
+                <img src="./icons/tools/color-picker.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="curve">
+              <abbr title="curve">
+                <img src="./icons/tools/curve.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="pencil" class="selected">
+              <abbr title="selected">
+                <img src="./icons/tools/pencil.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="brush">
+              <abbr title="brush">
+                <img src="./icons/tools/brush.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="polygon">
+              <abbr title="polygon">
+                <img src="./icons/tools/polygon.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="word">
+              <abbr title="word">
+                <img src="./icons/tools/word.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="line">
+              <abbr title="line">
+                <img src="./icons/tools/line.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="curve">
+              <abbr title="curve">
+                <img src="./icons/tools/curve.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="rect">
+              <abbr title="rect">
+                <img src="./icons/tools/rect.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="polygon">
+              <abbr title="polygon">
+                <img src="./icons/tools/polygon.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="ellipse">
+              <abbr title="ellipse">
+                <img src="./icons/tools/ellipse.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+            <div id="tool" data-tool-name="quad">
+              <abbr title="quad">
+                <img src="./icons/tools/quad.svg" alt="" srcset="" />
+              </abbr>
+            </div>
+          </div>
+          <div class="choice-area border">
+            <!-- Stroke Select Area -->
+          </div>
+        </div>
+        <div class="draw-area border">
+          <canvas id="myCanvas" width="960" height="500"></canvas>
+        </div>
+      </div>
+      <div class="colors-area border">
+        <div class="selected-color border-box">
+          <div class="border-box select-color-1" id="color-box"></div>
+          <div class="border-box select-color-2" id="color-box"></div>
+        </div>
+        <div class="select-colors">
+          <!-- Available Colors -->
+        </div>
+      </div>
+      <div class="info-area border">
+        For Help, click Help Topics on the Help Menu.
+      </div>
+    </main>
+    <!-- Scripts -->
+    <script src="./js/utils.js"></script>
+    <script src="./js/state.js"></script>
+    <script src="./js/init.js"></script>
+    <script src="./js/handlers.utils.js"></script>
+    <script src="./js/shape.handlers.js"></script>
+    <script src="./js/ui.render.js"></script>
+    <script src="./js/mouse.handlers.js"></script>
+    <script>
+      document.querySelector(`#tool[data-tool-name=pencil]`).click();
+    </script>
+  </body>
 </html>

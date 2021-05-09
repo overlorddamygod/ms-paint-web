@@ -73,9 +73,9 @@ tools.forEach((tool) => {
 
     const toolName = tool.dataset.toolName;
 
-    console.log("Clicked",toolName)
-    if ( toolName != "color-picker") {
-      state.recentTool = toolName
+    console.log("Clicked", toolName);
+    if (toolName != "color-picker") {
+      state.recentTool = toolName;
     }
 
     switch (toolName) {
@@ -123,43 +123,42 @@ tools.forEach((tool) => {
 });
 
 // Reference - https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
-document.querySelectorAll("#menu-item")[1].addEventListener("click",(e) => {
-    // Create an input element
-    var inputElement = document.createElement("input");
+document.querySelectorAll("#menu-item")[1].addEventListener("click", (e) => {
+  // Create an input element
+  var inputElement = document.createElement("input");
 
-    // Set its type to file
-    inputElement.type = "file";
+  // Set its type to file
+  inputElement.type = "file";
 
-    // set onchange event to call callback when user has selected file
-    inputElement.addEventListener("change", e=> {
-        if (confirm(`Are you sure you want to exit ${getOpenFileName()}`)) {
-            const file = e.originalTarget.files[0];
+  // set onchange event to call callback when user has selected file
+  inputElement.addEventListener("change", (e) => {
+    if (confirm(`Are you sure you want to exit ${getOpenFileName()}`)) {
+      const file = e.originalTarget.files[0];
 
-            openFile(file)
-        }
-    })
+      openFile(file);
+    }
+  });
 
-    // dispatch a click event to open the file dialog
-    inputElement.dispatchEvent(new MouseEvent("click")); 
-})
+  // dispatch a click event to open the file dialog
+  inputElement.dispatchEvent(new MouseEvent("click"));
+});
 
-document.querySelectorAll("#menu-item")[2].addEventListener("click",(e) => {
-    saveFile("image/jpeg");
-})
+document.querySelectorAll("#menu-item")[2].addEventListener("click", (e) => {
+  saveFile("image/jpeg");
+});
 
-const strokeWeights = Array.from({length:6}).map((a,i)=>i+1)
-strokeWeights.forEach(strokeWeight=> {
-  const div = document.createElement("div")
-  div.id = "choice"
+const strokeWeights = Array.from({ length: 6 }).map((a, i) => i + 1);
+strokeWeights.forEach((strokeWeight) => {
+  const div = document.createElement("div");
+  div.id = "choice";
   // document.querySelector(".choice-area").forEach((strokeChoice,index) => {
-  div.addEventListener("click",e=> {
-      stroke = strokeWeight;
-  })
+  div.addEventListener("click", (e) => {
+    stroke = strokeWeight;
+  });
   div.innerHTML = `
     <svg width="100" height="20" >
       <line x1="0" y1="10" x2="100" y2="10" style="stroke:rgb(0, 0, 0);stroke-width:${+strokeWeight}" />
     </svg> 
-  `
-  document.querySelector(".choice-area").append(div)
-})
-
+  `;
+  document.querySelector(".choice-area").append(div);
+});

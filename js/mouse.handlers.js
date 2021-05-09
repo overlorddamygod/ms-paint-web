@@ -1,55 +1,76 @@
 function pencil_handleMouseMove(e) {
-  if ( !drawing ) return
+  if (!drawing) return;
   _ctx.lineTo(e.layerX, e.layerY);
   _ctx.stroke();
 }
-const pencil_handleMouseDown = createMouseDownEvent("Pencil", e => {
-  _ctx.lineCap = "round";
-  _ctx.beginPath();
-  _ctx.moveTo(e.layerX, e.layerY);
-}, pencil_handleMouseMove)
+const pencil_handleMouseDown = createMouseDownEvent(
+  "Pencil",
+  (e) => {
+    _ctx.lineCap = "round";
+    _ctx.beginPath();
+    _ctx.moveTo(e.layerX, e.layerY);
+  },
+  pencil_handleMouseMove
+);
 
-const pencil_handleMouseUp = createMouseUpEvent("Pencil", pencil_handleMouseMove)
+const pencil_handleMouseUp = createMouseUpEvent(
+  "Pencil",
+  pencil_handleMouseMove
+);
 
 function eraser_handleMouseMove(e) {
-  if ( !drawing ) return
+  if (!drawing) return;
   _ctx.lineTo(e.layerX, e.layerY);
   _ctx.stroke();
 }
-const eraser_handleMouseDown = createMouseDownEvent("eraser", e => {
-  _ctx.lineCap = "round";
-  _ctx.beginPath();
-  _ctx.moveTo(e.layerX, e.layerY);
-}, eraser_handleMouseMove)
-const eraser_handleMouseUp = createMouseUpEvent("eraser", eraser_handleMouseMove)
+const eraser_handleMouseDown = createMouseDownEvent(
+  "eraser",
+  (e) => {
+    _ctx.lineCap = "round";
+    _ctx.beginPath();
+    _ctx.moveTo(e.layerX, e.layerY);
+  },
+  eraser_handleMouseMove
+);
+const eraser_handleMouseUp = createMouseUpEvent(
+  "eraser",
+  eraser_handleMouseMove
+);
 
-const rect_handleMouseMove = shapeMouseMove("rect")
-const rect_handleMouseDown = shapeMouseDown("rect", rect_handleMouseMove)
-const rect_handleMouseUp = shapeMouseUp("rect", rect_handleMouseMove)
+const rect_handleMouseMove = shapeMouseMove("rect");
+const rect_handleMouseDown = shapeMouseDown("rect", rect_handleMouseMove);
+const rect_handleMouseUp = shapeMouseUp("rect", rect_handleMouseMove);
 
-const ellipse_handleMouseMove = shapeMouseMove("ellipse")
-const ellipse_handleMouseDown = shapeMouseDown("ellipse", ellipse_handleMouseMove)
-const ellipse_handleMouseUp = shapeMouseUp("ellipse", ellipse_handleMouseMove)
+const ellipse_handleMouseMove = shapeMouseMove("ellipse");
+const ellipse_handleMouseDown = shapeMouseDown(
+  "ellipse",
+  ellipse_handleMouseMove
+);
+const ellipse_handleMouseUp = shapeMouseUp("ellipse", ellipse_handleMouseMove);
 
 function line_handleMouseMove(e) {
-  if ( !drawing ) return false
-    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+  if (!drawing) return false;
+  _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
 
-    _ctx.beginPath();
-    _ctx.moveTo(oldPt.x, oldPt.y);
-    _ctx.lineTo(e.layerX, e.layerY);
-    _ctx.stroke();
-    _ctx.closePath();
+  _ctx.beginPath();
+  _ctx.moveTo(oldPt.x, oldPt.y);
+  _ctx.lineTo(e.layerX, e.layerY);
+  _ctx.stroke();
+  _ctx.closePath();
 }
-const line_handleMouseDown = createMouseDownEvent("line", e => {
-  oldPt = createPoint(e.layerX, e.layerY);
-}, line_handleMouseMove)
+const line_handleMouseDown = createMouseDownEvent(
+  "line",
+  (e) => {
+    oldPt = createPoint(e.layerX, e.layerY);
+  },
+  line_handleMouseMove
+);
 
-const line_handleMouseUp = createMouseUpEvent("line", line_handleMouseMove)
+const line_handleMouseUp = createMouseUpEvent("line", line_handleMouseMove);
 
 function colorPicker_Click(event) {
-  const x = event.layerX
-  const y = event.layerY
+  const x = event.layerX;
+  const y = event.layerY;
   const pixel = ctx.getImageData(x, y, 1, 1);
   const data = pixel.data;
 
@@ -58,21 +79,21 @@ function colorPicker_Click(event) {
   );
 
   setSelectedColor(pickedColor, null);
-  document.querySelector(`#tool[data-tool-name=${state.recentTool}]`).click()
+  document.querySelector(`#tool[data-tool-name=${state.recentTool}]`).click();
 }
 
 function fill_Click(event) {
   state.saveState(canvas);
 
-  const x = event.layerX
-  const y = event.layerY
+  const x = event.layerX;
+  const y = event.layerY;
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
   setColorByMouseButton(event);
 
-  const col = hexToRGB(color)
-  floodFill(imageData, col, x, y)
-  ctx.putImageData(imageData, 0, 0)
+  const col = hexToRGB(color);
+  floodFill(imageData, col, x, y);
+  ctx.putImageData(imageData, 0, 0);
 }
 
 const mouseHandlers = {
@@ -138,12 +159,12 @@ window.addEventListener("keydown", async (e) => {
 });
 
 // TODO : Implement image paste
-window.addEventListener("paste", async function(e) {
-    // e.preventDefault();
-    // e.stopPropagation();
-    console.log(e)
-    let file = e.clipboardData.items[0].getAsFile();
-    console.log(file)
-    // let objectUrl = URL.createObjectURL(file);
-    // do something with url here
+window.addEventListener("paste", async function (e) {
+  // e.preventDefault();
+  // e.stopPropagation();
+  console.log(e);
+  let file = e.clipboardData.items[0].getAsFile();
+  console.log(file);
+  // let objectUrl = URL.createObjectURL(file);
+  // do something with url here
 });

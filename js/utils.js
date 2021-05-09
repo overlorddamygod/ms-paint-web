@@ -1,5 +1,5 @@
-function createPoint(x,y) {
-  return { x, y }
+function createPoint(x, y) {
+  return { x, y };
 }
 
 // Reference - https://jsfiddle.net/Mottie/xcqpF/1/light/
@@ -24,8 +24,8 @@ function hexToRGB(hex) {
     r,
     g,
     b,
-    a: 255
-  }
+    a: 255,
+  };
 }
 
 function setSelectedColor(primaryCol, secondaryCol) {
@@ -56,139 +56,179 @@ function setColorByMouseButton(event) {
   }
 }
 
-function renderCanvas(_state,_canvas) {
+function renderCanvas(_state, _canvas) {
   // if ( _state ) {
-    const img = new Image();
-    img.src = _state;
-    img.onload = function() {
-      ctx.clearRect(0, 0, _canvas.width, _canvas.height);
-      ctx.drawImage(img, 0, 0, _canvas.width, _canvas.height, 0, 0, _canvas.width, _canvas.height);
-    }
+  const img = new Image();
+  img.src = _state;
+  img.onload = function () {
+    ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      _canvas.width,
+      _canvas.height,
+      0,
+      0,
+      _canvas.width,
+      _canvas.height
+    );
+  };
   // }
 }
 
 function getOpenFileName() {
-    return window.document.title.replace("- Paint","").trim()
+  return window.document.title.replace("- Paint", "").trim();
 }
 
 function setFileName(filename) {
-    window.document.title = `${filename} - Paint`
+  window.document.title = `${filename} - Paint`;
 }
 
 function openFile(file) {
-    setFileName(file.name)
-    const img = new Image();
+  setFileName(file.name);
+  const img = new Image();
 
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      
-        img.src = reader.result;
-        console.log(img.src)
-        img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
+  var reader = new FileReader();
+  reader.onloadend = function () {
+    state.undo_list = [];
+    state.redo_list = [];
+    img.src = reader.result;
+    console.log(img.src);
+    img.onload = function () {
+      canvas.width = img.width;
+      canvas.height = img.height;
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height); 
-            
-            _canvas.width = canvas.width;
-            _canvas.height = canvas.height;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        canvas.width,
+        canvas.height,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
 
-            _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
-        }
-    }
-    reader.readAsDataURL(file);
+      _canvas.width = canvas.width;
+      _canvas.height = canvas.height;
+
+      _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+    };
+  };
+  reader.readAsDataURL(file);
 }
 
 function saveFile(type = "image/png") {
-    var link = document.createElement("a")
-    link.setAttribute('download', getOpenFileName());
-    link.setAttribute('href', canvas.toDataURL(type).replace(type, "image/octet-stream"));
-    link.click();
+  var link = document.createElement("a");
+  link.setAttribute("download", getOpenFileName());
+  link.setAttribute(
+    "href",
+    canvas.toDataURL(type).replace(type, "image/octet-stream")
+  );
+  link.click();
 }
 
-
-
-// Flood Fill 
+// Flood Fill
 // Reference - https://codepen.io/Geeyoam/pen/vLGZzG
 function getColorAtPixel(imageData, x, y) {
-  const {width, data} = imageData
+  const { width, data } = imageData;
 
   return {
     r: data[4 * (width * y + x) + 0],
     g: data[4 * (width * y + x) + 1],
     b: data[4 * (width * y + x) + 2],
-    a: data[4 * (width * y + x) + 3]
-  }
+    a: data[4 * (width * y + x) + 3],
+  };
 }
 
 function setColorAtPixel(imageData, color, x, y) {
-  const {width, data} = imageData
+  const { width, data } = imageData;
 
-  data[4 * (width * y + x) + 0] = color.r & 0xff
-  data[4 * (width * y + x) + 1] = color.g & 0xff
-  data[4 * (width * y + x) + 2] = color.b & 0xff
-  data[4 * (width * y + x) + 3] = color.a & 0xff
+  data[4 * (width * y + x) + 0] = color.r & 0xff;
+  data[4 * (width * y + x) + 1] = color.g & 0xff;
+  data[4 * (width * y + x) + 2] = color.b & 0xff;
+  data[4 * (width * y + x) + 3] = color.a & 0xff;
 }
 
 function colorMatch(a, b) {
-  return a.r === b.r && a.g === b.g && a.b === b.b && a.a === b.a
+  return a.r === b.r && a.g === b.g && a.b === b.b && a.a === b.a;
 }
 
 function floodFill(imageData, newColor, x, y) {
-  const {width, height, data} = imageData
-  const stack = []
-  const baseColor = getColorAtPixel(imageData, x, y)
-  let operator = {x, y}
+  const { width, height, data } = imageData;
+  const stack = [];
+  const baseColor = getColorAtPixel(imageData, x, y);
+  let operator = { x, y };
 
-  console.log(baseColor,newColor)
+  console.log(baseColor, newColor);
   // Check if base color and new color are the same
   if (colorMatch(baseColor, newColor)) {
-    return
+    return;
   }
 
   // Add the clicked location to stack
-  stack.push({x: operator.x, y: operator.y})
+  stack.push({ x: operator.x, y: operator.y });
 
   while (stack.length) {
-    operator = stack.pop()
-    let contiguousDown = true // Vertical is assumed to be true
-    let contiguousUp = true // Vertical is assumed to be true
-    let contiguousLeft = false
-    let contiguousRight = false
+    operator = stack.pop();
+    let contiguousDown = true; // Vertical is assumed to be true
+    let contiguousUp = true; // Vertical is assumed to be true
+    let contiguousLeft = false;
+    let contiguousRight = false;
 
     // Move to top most contiguousDown pixel
     while (contiguousUp && operator.y >= 0) {
-      operator.y--
-      contiguousUp = colorMatch(getColorAtPixel(imageData, operator.x, operator.y), baseColor)
+      operator.y--;
+      contiguousUp = colorMatch(
+        getColorAtPixel(imageData, operator.x, operator.y),
+        baseColor
+      );
     }
 
     // Move downward
     while (contiguousDown && operator.y < height) {
-      setColorAtPixel(imageData, newColor, operator.x, operator.y)
+      setColorAtPixel(imageData, newColor, operator.x, operator.y);
 
       // Check left
-      if (operator.x - 1 >= 0 && colorMatch(getColorAtPixel(imageData, operator.x - 1, operator.y), baseColor)) {
+      if (
+        operator.x - 1 >= 0 &&
+        colorMatch(
+          getColorAtPixel(imageData, operator.x - 1, operator.y),
+          baseColor
+        )
+      ) {
         if (!contiguousLeft) {
-          contiguousLeft = true
-          stack.push({x: operator.x - 1, y: operator.y})
+          contiguousLeft = true;
+          stack.push({ x: operator.x - 1, y: operator.y });
         }
       } else {
-        contiguousLeft = false
+        contiguousLeft = false;
       }
 
       // Check right
-      if (operator.x + 1 < width && colorMatch(getColorAtPixel(imageData, operator.x + 1, operator.y), baseColor)) {
+      if (
+        operator.x + 1 < width &&
+        colorMatch(
+          getColorAtPixel(imageData, operator.x + 1, operator.y),
+          baseColor
+        )
+      ) {
         if (!contiguousRight) {
-          stack.push({x: operator.x + 1, y: operator.y})
-          contiguousRight = true
+          stack.push({ x: operator.x + 1, y: operator.y });
+          contiguousRight = true;
         }
       } else {
-        contiguousRight = false
+        contiguousRight = false;
       }
 
-      operator.y++
-      contiguousDown = colorMatch(getColorAtPixel(imageData, operator.x, operator.y), baseColor)
+      operator.y++;
+      contiguousDown = colorMatch(
+        getColorAtPixel(imageData, operator.x, operator.y),
+        baseColor
+      );
     }
   }
 }
