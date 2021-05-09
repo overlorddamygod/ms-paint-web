@@ -57,6 +57,11 @@ function line_handleMouseMove(e) {
   _ctx.beginPath();
   _ctx.moveTo(oldPt.x, oldPt.y);
   if ( state.shift ) {
+
+    const slope = (e.layerX - oldPt.x) / (e.layerY - oldPt.y)
+    // console.log(slope)
+
+    // if ( Math.floor(Math.abs(slope)) == 0 )
     _ctx.lineTo(e.layerX, oldPt.y);
   } else {
     _ctx.lineTo(e.layerX, e.layerY);
