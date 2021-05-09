@@ -42,11 +42,12 @@ const rect_handleMouseDown = shapeMouseDown("rect", rect_handleMouseMove);
 const rect_handleMouseUp = shapeMouseUp("rect", rect_handleMouseMove);
 
 const ellipse_handleMouseMove = shapeMouseMove("ellipse");
-const ellipse_handleMouseDown = shapeMouseDown(
-  "ellipse",
-  ellipse_handleMouseMove
-);
+const ellipse_handleMouseDown = shapeMouseDown("ellipse",ellipse_handleMouseMove);
 const ellipse_handleMouseUp = shapeMouseUp("ellipse", ellipse_handleMouseMove);
+
+const roundedrect_handleMouseMove = shapeMouseMove("rounded-rect");
+const roundedrect_handleMouseDown = shapeMouseDown("rounded-rect",roundedrect_handleMouseMove);
+const roundedrect_handleMouseUp = shapeMouseUp("rounded-rect", roundedrect_handleMouseMove);
 
 function line_handleMouseMove(e) {
   if (!drawing) return false;
@@ -167,11 +168,11 @@ const mouseHandlers = {
     mouseMove: line_handleMouseMove,
     mouseUp: line_handleMouseUp,
   },
-  // word: {
-  //   mouseDown: word_handleMouseDown,
-  //   mouseMove: word_handleMouseMove,
-  //   mouseUp: word_handleMouseUp,
-  // },
+  rounded_rect: {
+    mouseDown: roundedrect_handleMouseDown,
+    mouseMove: roundedrect_handleMouseMove,
+    mouseUp: roundedrect_handleMouseUp,
+  },
   colorPicker: {
     click: colorPicker_Click,
   },

@@ -59,7 +59,9 @@ tools.forEach((tool) => {
   tool.addEventListener("click", () => {
     // stage.removeAllEventListeners();
     _canvas.removeEventListener("click", mouseHandlers.colorPicker.click);
-    _canvas.removeEventListener("mousedown", mouseHandlers.fill.click);
+    _canvas.removeEventListener("click", mouseHandlers.magnify.click);
+    _canvas.removeEventListener("click", mouseHandlers.fill.click);
+
     _canvas.removeEventListener("mousedown", mouseHandlers.rect.mouseDown);
     _canvas.removeEventListener("mouseup", mouseHandlers.rect.mouseUp);
     _canvas.removeEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
@@ -70,7 +72,8 @@ tools.forEach((tool) => {
     _canvas.removeEventListener("mouseup", mouseHandlers.eraser.mouseUp);
     _canvas.removeEventListener("mousedown", mouseHandlers.line.mouseDown);
     _canvas.removeEventListener("mouseup", mouseHandlers.line.mouseUp);
-    _canvas.removeEventListener("click", mouseHandlers.magnify.click);
+    _canvas.removeEventListener("mousedown", mouseHandlers.rounded_rect.mouseDown);
+    _canvas.removeEventListener("mouseup", mouseHandlers.rounded_rect.mouseUp);
     // _canvas.removeEventListener("mousedown", mouseHandlers.word.mouseDown);
     // _canvas.removeEventListener("mouseup", mouseHandlers.word.mouseUp);
 
@@ -99,6 +102,10 @@ tools.forEach((tool) => {
       case "rect":
         _canvas.addEventListener("mousedown", mouseHandlers.rect.mouseDown);
         _canvas.addEventListener("mouseup", mouseHandlers.rect.mouseUp);
+        break;
+      case "rounded-rect":
+        _canvas.addEventListener("mousedown", mouseHandlers.rounded_rect.mouseDown);
+        _canvas.addEventListener("mouseup", mouseHandlers.rounded_rect.mouseUp);
         break;
       case "ellipse":
         _canvas.addEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
