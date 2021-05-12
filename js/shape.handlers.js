@@ -48,8 +48,10 @@ function drawShape(shape, x, y, w, h) {
     _ctx.roundedRectangle(x, y, w, h, stroke * 2);
     _ctx.stroke();
   } else if (shape == "ellipse") {
-    _ctx.ellipse(x, y, w, h, 0, 0, 360);
+    _ctx.beginPath();
+    _ctx.ellipse(x+w/2, y+h/2, w/2, h/2, 0, 0, 360);
     _ctx.stroke();
+    _ctx.closePath();
   }
 }
 

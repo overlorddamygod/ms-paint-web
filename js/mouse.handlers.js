@@ -56,10 +56,16 @@ function line_handleMouseMove(e) {
 
   _ctx.beginPath();
   _ctx.moveTo(oldPt.x, oldPt.y);
+  const slope = (e.layerY - oldPt.y) / (e.layerX - oldPt.x)
+  const angle = Math.atan2(slope) * 180 / Math.PI;
+  console.log(angle)
+
   if ( state.shift ) {
 
-    const slope = (e.layerX - oldPt.x) / (e.layerY - oldPt.y)
-    // console.log(slope)
+
+    // xx = x + (d * cos(angle))
+    // yy = y + (d * sin(angle))
+    
 
     // if ( Math.floor(Math.abs(slope)) == 0 )
     _ctx.lineTo(e.layerX, oldPt.y);
