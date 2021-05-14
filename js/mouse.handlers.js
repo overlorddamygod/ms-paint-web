@@ -196,7 +196,7 @@ const mouseHandlers = {
     click: colorPicker_Click,
   },
   "fill": {
-    click: fill_Click,
+    mouseDown: fill_Click,
   },
   "magnify": {
     click: magnify_Click,

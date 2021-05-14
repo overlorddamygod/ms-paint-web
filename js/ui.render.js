@@ -31,17 +31,8 @@ const colors = [
 ];
 
 colors.forEach((_color) => {
-  const colorBoxEl = document.createElement("div");
-  colorBoxEl.classList = "border-box";
-  colorBoxEl.id = "color-box";
-  colorBoxEl.style.backgroundColor = _color;
-  colorBoxEl.addEventListener("mousedown", (e) => {
-    if (e.button == 0) {
-      setSelectedColor(_color, null);
-    } else if (e.button == 2) {
-      setSelectedColor(null, _color);
-    }
-  });
+  const colorBoxEl = document.createElement("color-box");
+  colorBoxEl.setAttribute("color", _color)
   selectColorsArea.appendChild(colorBoxEl);
 });
 
@@ -79,7 +70,7 @@ document.querySelectorAll("#menu-item")[2].addEventListener("click", (e) => {
   saveFile("image/jpeg");
 });
 
-const strokeWeights = Array.from({ length: 6 }).map((a, i) => i + 1);
+const strokeWeights = Array.from({ length: 7 }).map((a, i) => i + 1);
 strokeWeights.forEach((strokeWeight) => {
   const div = document.createElement("div");
   div.id = "choice";
