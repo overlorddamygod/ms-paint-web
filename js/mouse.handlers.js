@@ -162,43 +162,43 @@ function magnify_Click(event) {
 }
 
 const mouseHandlers = {
-  pencil: {
+  "pencil": {
     mouseDown: pencil_handleMouseDown,
     mouseMove: pencil_handleMouseMove,
     mouseUp: pencil_handleMouseUp,
   },
-  eraser: {
+  "eraser": {
     mouseDown: eraser_handleMouseDown,
     mouseMove: eraser_handleMouseMove,
     mouseUp: eraser_handleMouseUp,
   },
-  rect: {
+  "rect": {
     mouseDown: rect_handleMouseDown,
     mouseMove: rect_handleMouseMove,
     mouseUp: rect_handleMouseUp,
   },
-  ellipse: {
+  "ellipse": {
     mouseDown: ellipse_handleMouseDown,
     mouseMove: ellipse_handleMouseMove,
     mouseUp: ellipse_handleMouseUp,
   },
-  line: {
+  "line": {
     mouseDown: line_handleMouseDown,
     mouseMove: line_handleMouseMove,
     mouseUp: line_handleMouseUp,
   },
-  rounded_rect: {
+  "rounded_rect": {
     mouseDown: roundedrect_handleMouseDown,
     mouseMove: roundedrect_handleMouseMove,
     mouseUp: roundedrect_handleMouseUp,
   },
-  colorPicker: {
+  "colorPicker": {
     click: colorPicker_Click,
   },
-  fill: {
+  "fill": {
     click: fill_Click,
   },
-  magnify: {
+  "magnify": {
     click: magnify_Click,
   },
 };
