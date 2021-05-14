@@ -53,87 +53,87 @@ document.querySelector(".selected-color").addEventListener("click", () => {
 // colorBoxes.forEach((colorBox)=> {
 
 // })
-const tools = document.querySelectorAll("#tool");
+// const tools = document.querySelectorAll("#tool");
 
-tools.forEach((tool) => {
-  tool.addEventListener("click", () => {
-    // stage.removeAllEventListeners();
-    _canvas.removeEventListener("click", mouseHandlers.colorPicker.click);
-    _canvas.removeEventListener("click", mouseHandlers.magnify.click);
-    _canvas.removeEventListener("click", mouseHandlers.fill.click);
+// tools.forEach((tool) => {
+//   tool.addEventListener("click", () => {
+//     // stage.removeAllEventListeners();
+//     _canvas.removeEventListener("click", mouseHandlers.colorPicker.click);
+//     _canvas.removeEventListener("click", mouseHandlers.magnify.click);
+//     _canvas.removeEventListener("click", mouseHandlers.fill.click);
 
-    _canvas.removeEventListener("mousedown", mouseHandlers.rect.mouseDown);
-    _canvas.removeEventListener("mouseup", mouseHandlers.rect.mouseUp);
-    _canvas.removeEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
-    _canvas.removeEventListener("mouseup", mouseHandlers.ellipse.mouseUp);
-    _canvas.removeEventListener("mousedown", mouseHandlers.pencil.mouseDown);
-    _canvas.removeEventListener("mouseup", mouseHandlers.pencil.mouseUp);
-    _canvas.removeEventListener("mousedown", mouseHandlers.eraser.mouseDown);
-    _canvas.removeEventListener("mouseup", mouseHandlers.eraser.mouseUp);
-    _canvas.removeEventListener("mousedown", mouseHandlers.line.mouseDown);
-    _canvas.removeEventListener("mouseup", mouseHandlers.line.mouseUp);
-    _canvas.removeEventListener("mousedown", mouseHandlers.rounded_rect.mouseDown);
-    _canvas.removeEventListener("mouseup", mouseHandlers.rounded_rect.mouseUp);
-    // _canvas.removeEventListener("mousedown", mouseHandlers.word.mouseDown);
-    // _canvas.removeEventListener("mouseup", mouseHandlers.word.mouseUp);
+//     _canvas.removeEventListener("mousedown", mouseHandlers.rect.mouseDown);
+//     _canvas.removeEventListener("mouseup", mouseHandlers.rect.mouseUp);
+//     _canvas.removeEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
+//     _canvas.removeEventListener("mouseup", mouseHandlers.ellipse.mouseUp);
+//     _canvas.removeEventListener("mousedown", mouseHandlers.pencil.mouseDown);
+//     _canvas.removeEventListener("mouseup", mouseHandlers.pencil.mouseUp);
+//     _canvas.removeEventListener("mousedown", mouseHandlers.eraser.mouseDown);
+//     _canvas.removeEventListener("mouseup", mouseHandlers.eraser.mouseUp);
+//     _canvas.removeEventListener("mousedown", mouseHandlers.line.mouseDown);
+//     _canvas.removeEventListener("mouseup", mouseHandlers.line.mouseUp);
+//     _canvas.removeEventListener("mousedown", mouseHandlers.rounded_rect.mouseDown);
+//     _canvas.removeEventListener("mouseup", mouseHandlers.rounded_rect.mouseUp);
+//     // _canvas.removeEventListener("mousedown", mouseHandlers.word.mouseDown);
+//     // _canvas.removeEventListener("mouseup", mouseHandlers.word.mouseUp);
 
-    const toolName = tool.dataset.toolName;
+//     const toolName = tool.dataset.toolName;
 
-    console.log("Clicked", toolName);
-    if (toolName != "color-picker") {
-      state.recentTool = toolName;
-    }
+//     console.log("Clicked", toolName);
+//     if (toolName != "color-picker") {
+//       state.recentTool = toolName;
+//     }
 
-    switch (toolName) {
-      case "pencil":
-        _canvas.addEventListener("mousedown", mouseHandlers.pencil.mouseDown);
-        _canvas.addEventListener("mouseup", mouseHandlers.pencil.mouseUp);
-        break;
-      case "eraser":
-        _canvas.addEventListener("mousedown", mouseHandlers.eraser.mouseDown);
-        _canvas.addEventListener("mouseup", mouseHandlers.eraser.mouseUp);
-        break;
-      case "color-picker":
-        _canvas.addEventListener("click", mouseHandlers.colorPicker.click);
-        break;
-      case "fill":
-        _canvas.addEventListener("click", mouseHandlers.fill.click);
-        break;
-      case "rect":
-        _canvas.addEventListener("mousedown", mouseHandlers.rect.mouseDown);
-        _canvas.addEventListener("mouseup", mouseHandlers.rect.mouseUp);
-        break;
-      case "rounded-rect":
-        _canvas.addEventListener("mousedown", mouseHandlers.rounded_rect.mouseDown);
-        _canvas.addEventListener("mouseup", mouseHandlers.rounded_rect.mouseUp);
-        break;
-      case "ellipse":
-        _canvas.addEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
-        _canvas.addEventListener("mouseup", mouseHandlers.ellipse.mouseUp);
-        break;
-      case "line":
-        _canvas.addEventListener("mousedown", mouseHandlers.line.mouseDown);
-        _canvas.addEventListener("mouseup", mouseHandlers.line.mouseUp);
-        break;
-      case "magnify":
-        _canvas.addEventListener("click", mouseHandlers.magnify.click);
-        break;
-      case "brush":
-        break;
-      default:
-        console.log("UNEMPLEMENTED");
-        break;
-    }
-    tools.forEach((_tool) => {
-      if (toolName == _tool.dataset.toolName) {
-        tool.classList.remove("selected");
-        tool.classList.add("selected");
-      } else {
-        _tool.classList.remove("selected");
-      }
-    });
-  });
-});
+//     switch (toolName) {
+//       case "pencil":
+//         _canvas.addEventListener("mousedown", mouseHandlers.pencil.mouseDown);
+//         _canvas.addEventListener("mouseup", mouseHandlers.pencil.mouseUp);
+//         break;
+//       case "eraser":
+//         _canvas.addEventListener("mousedown", mouseHandlers.eraser.mouseDown);
+//         _canvas.addEventListener("mouseup", mouseHandlers.eraser.mouseUp);
+//         break;
+//       case "color-picker":
+//         _canvas.addEventListener("click", mouseHandlers.colorPicker.click);
+//         break;
+//       case "fill":
+//         _canvas.addEventListener("click", mouseHandlers.fill.click);
+//         break;
+//       case "rect":
+//         _canvas.addEventListener("mousedown", mouseHandlers.rect.mouseDown);
+//         _canvas.addEventListener("mouseup", mouseHandlers.rect.mouseUp);
+//         break;
+//       case "rounded-rect":
+//         _canvas.addEventListener("mousedown", mouseHandlers.rounded_rect.mouseDown);
+//         _canvas.addEventListener("mouseup", mouseHandlers.rounded_rect.mouseUp);
+//         break;
+//       case "ellipse":
+//         _canvas.addEventListener("mousedown", mouseHandlers.ellipse.mouseDown);
+//         _canvas.addEventListener("mouseup", mouseHandlers.ellipse.mouseUp);
+//         break;
+//       case "line":
+//         _canvas.addEventListener("mousedown", mouseHandlers.line.mouseDown);
+//         _canvas.addEventListener("mouseup", mouseHandlers.line.mouseUp);
+//         break;
+//       case "magnify":
+//         _canvas.addEventListener("click", mouseHandlers.magnify.click);
+//         break;
+//       case "brush":
+//         break;
+//       default:
+//         console.log("UNEMPLEMENTED");
+//         break;
+//     }
+//     tools.forEach((_tool) => {
+//       if (toolName == _tool.dataset.toolName) {
+//         tool.classList.remove("selected");
+//         tool.classList.add("selected");
+//       } else {
+//         _tool.classList.remove("selected");
+//       }
+//     });
+//   });
+// });
 
 // Reference - https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
 document.querySelectorAll("#menu-item")[1].addEventListener("click", (e) => {
