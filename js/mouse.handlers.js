@@ -275,7 +275,7 @@ window.addEventListener("keyup", shiftKeyUp);
 
 window.addEventListener("click", e=> {
   const includesMenu = e.target.nodeName.toLowerCase().includes("menu")
-  if ( !includesMenu ) {
+  if ( !includesMenu && state.openMenu) {
     document.querySelector(`main-menu[name=${state.openMenu}]`).removeAttribute("active")
     state.setMenu(null);
   }
