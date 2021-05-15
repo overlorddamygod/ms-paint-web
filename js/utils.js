@@ -253,3 +253,12 @@ function floodFill(imageData, newColor, x, y) {
     }
   }
 }
+
+
+// MENU ITEMS
+
+function toggleArea(selector) {
+  selector = document.querySelector(selector)
+  selector.style.display = selector.style.display == "none" ? "flex" : "none";
+  console.log(selector)
+}

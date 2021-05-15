@@ -134,8 +134,30 @@ class MenuItem extends HTMLElement {
   get name() {
     return this.getAttribute("name");
   }
+  get href() {
+    return this.getAttribute("href");
+  }
   get hotkey() {
     return this.getAttribute("hotkey");
+  }
+  get active() {
+    return this.hasAttribute("active");
+  }
+  get toggle() {
+    return this.hasAttribute("toggle");
+  }
+  static get observedAttributes() {
+    return ["active"];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name == "active" && this.toggle) {
+      if ( this.active ) {
+        this.shadowRoot.querySelector("span").innerHTML = "✓"
+      } else {
+        this.shadowRoot.querySelector("span").innerHTML = ""
+      }
+    }
   }
   constructor() {
     super();
@@ -144,7 +166,6 @@ class MenuItem extends HTMLElement {
     template.innerHTML = `
         <style>
             .item-menu {
-                padding-left: 1rem;
                 display: flex;
                 justify-content: space-between;
                 padding-right: 0.2rem;
@@ -155,14 +176,39 @@ class MenuItem extends HTMLElement {
             .hotkey {
                 color: grey;
             }
+
+            .name {
+                flex: 1;
+            }
+
+            .tick {
+                min-width: 1rem;
+            }
+
+            a {
+                color: black;
+                text-decoration:none;
+            }
         </style>  
-        <div class="item-menu">
+        <a class="item-menu" ${this.href ? 'href="' + this.href + '"target=`_blank`' : ""}>
+            <div class="tick">${this.toggle ? `<span>${this.active ? "✓" : ""}</span>` : ""}</div>
             <div class="name">${this.name}</div>
             <div class="hotkey">${this.hotkey || ""}</div>
-        </div>
+        </a>
       `;
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    if ( this.toggle ) {
+        // this.onclick()
+        this.addEventListener("click", (e) => {
+            console.log(this.shadowRoot.querySelector("span"))
+            if ( this.active ) {
+                this.removeAttribute("active")
+            } else {
+                this.setAttribute("active","lol")
+            }
+        })
+    }
   }
 }
 

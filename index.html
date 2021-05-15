@@ -41,9 +41,9 @@
       </main-menu>
       <main-menu name="View">
         <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" name="ToolBox"></menu-item>
-          <menu-item slot="menu-item" name="Color Box"></menu-item>
-          <menu-item slot="menu-item" name="Status Box"></menu-item>
+          <menu-item slot="menu-item" toggle name="ToolBox" active onclick="toggleArea('.tools-area')"></menu-item>
+          <menu-item slot="menu-item" toggle name="Color Box" active onclick="toggleArea('.colors-area')"></menu-item>
+          <menu-item slot="menu-item" toggle name="Status Box" active onclick="toggleArea('.info-area')"></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Image">
@@ -68,7 +68,8 @@
           <menu-item slot="menu-item" name="Help Topics"></menu-item>
         </menu-group>
         <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" name="About Paint"></menu-item>
+          <menu-item slot="menu-item" name="My Github" href="https://github.com/overlorddamygod"></menu-item>
+          <menu-item slot="menu-item" name="Github Repository" href="https://github.com/overlorddamygod/ms-paint-web"></menu-item>
         </menu-group>
       </main-menu>
     </div>
