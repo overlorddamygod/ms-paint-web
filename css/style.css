@@ -26,12 +26,9 @@ body {
   align-items: center;
   height: 2vw;
   min-height: 2rem;
+  z-index: 100;
 }
 
-#menu-item {
-  margin: 0 0.5rem;
-  cursor: pointer;
-}
 
 #menu-item:hover {
   /* background-color: #F8FCED; */

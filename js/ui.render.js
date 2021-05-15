@@ -40,35 +40,6 @@ document.querySelector(".selected-color").addEventListener("click", () => {
   let tempColor = primaryColor;
   setSelectedColor(secondaryColor, tempColor);
 });
-// const colorBoxes = document.querySelectorAll("#color-box")
-// colorBoxes.forEach((colorBox)=> {
-
-// })
-
-// Reference - https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
-document.querySelectorAll("#menu-item")[1].addEventListener("click", (e) => {
-  // Create an input element
-  var inputElement = document.createElement("input");
-
-  // Set its type to file
-  inputElement.type = "file";
-
-  // set onchange event to call callback when user has selected file
-  inputElement.addEventListener("change", (e) => {
-    if (confirm(`Are you sure you want to exit ${getOpenFileName()}`)) {
-      const file = e.originalTarget.files[0];
-
-      openFile(file);
-    }
-  });
-
-  // dispatch a click event to open the file dialog
-  inputElement.dispatchEvent(new MouseEvent("click"));
-});
-
-document.querySelectorAll("#menu-item")[2].addEventListener("click", (e) => {
-  saveFile("image/jpeg");
-});
 
 const strokeWeights = Array.from({ length: 7 }).map((a, i) => i + 1);
 strokeWeights.forEach((strokeWeight) => {

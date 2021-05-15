@@ -121,6 +121,27 @@ function openFile(file) {
   reader.readAsDataURL(file);
 }
 
+// Reference - https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
+function openFileWrapper() {
+    // Create an input element
+    var inputElement = document.createElement("input");
+
+    // Set its type to file
+    inputElement.type = "file";
+  
+    // set onchange event to call callback when user has selected file
+    inputElement.addEventListener("change", (e) => {
+      if (confirm(`Are you sure you want to exit ${getOpenFileName()}`)) {
+        const file = e.originalTarget.files[0];
+  
+        openFile(file);
+      }
+    });
+  
+    // dispatch a click event to open the file dialog
+    inputElement.dispatchEvent(new MouseEvent("click"));
+}
+
 function saveFile(type = "image/png") {
   var link = document.createElement("a");
   link.setAttribute("download", getOpenFileName());

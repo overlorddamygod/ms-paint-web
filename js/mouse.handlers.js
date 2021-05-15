@@ -58,7 +58,7 @@ function line_handleMouseMove(e) {
   _ctx.moveTo(oldPt.x, oldPt.y);
   const slope = (e.layerY - oldPt.y) / (e.layerX - oldPt.x)
   const angle = Math.atan2(slope) * 180 / Math.PI;
-  console.log(angle)
+  // console.log(angle)
 
   if ( state.shift ) {
 
@@ -221,6 +221,19 @@ window.addEventListener("keydown", async (e) => {
     state.redo(canvas, ctx);
   }
   if (
+    (e.ctrlKey && e.key === "n" && !isMac) ||
+    (e.metaKey && e.key === "n" && !e.shiftKey && isMac)
+  ) {
+    console.log("NEW");
+  }
+  if (
+    (e.ctrlKey && e.key === "o" && !isMac) ||
+    (e.metaKey && e.key === "o" && !e.shiftKey && isMac)
+  ) {
+    console.log("OPEN");
+    openFileWrapper();
+  }
+  if (
     (e.ctrlKey && e.key === "v" && !isMac) ||
     (e.metaKey && e.key === "v" && !e.shiftKey && isMac)
   ) {
@@ -259,3 +272,11 @@ function shiftKeyUp(e) {
 
 window.addEventListener("keydown", shiftKeyDown);
 window.addEventListener("keyup", shiftKeyUp);
+
+window.addEventListener("click", e=> {
+  const includesMenu = e.target.nodeName.toLowerCase().includes("menu")
+  if ( !includesMenu ) {
+    document.querySelector(`main-menu[name=${state.openMenu}]`).removeAttribute("active")
+    state.setMenu(null);
+  }
+});

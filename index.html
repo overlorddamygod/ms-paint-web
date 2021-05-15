@@ -10,14 +10,67 @@
   </head>
   <body>
     <div class="menu-bar border">
-      <div id="menu-item">File</div>
-      <div id="menu-item">Open</div>
-      <div id="menu-item">Save</div>
-      <div id="menu-item">Edit</div>
-      <div id="menu-item">View</div>
-      <div id="menu-item">Image</div>
-      <div id="menu-item">Colors</div>
-      <div id="menu-item">Help</div>
+      <main-menu name="File">
+        <menu-group slot="menu-item-group" sep>
+            <menu-item slot="menu-item" name="New" hotkey="Ctrl + N" ></menu-item>
+            <menu-item slot="menu-item" name="Open" hotkey="Ctrl + O" onclick="openFileWrapper()"></menu-item>
+            <menu-item slot="menu-item" name="Download"  hotkey="Ctrl + S" onclick="saveFile('image/jpeg')"></menu-item>
+            <menu-item slot="menu-item" name="Download As"></menu-item>
+        </menu-group>
+        <menu-group slot="menu-item-group">
+          <menu-item slot="menu-item" name="Exit"></menu-item>
+        </menu-group>
+      </main-menu>
+      <main-menu name="Edit">
+        <menu-group slot="menu-item-group" sep>
+            <menu-item slot="menu-item" name="Undo" hotkey="Ctrl + Z" onclick="state.undo(canvas, ctx);"></menu-item>
+            <menu-item slot="menu-item" name="Redo" hotkey="Ctrl + Y" onclick="state.redo(canvas, ctx);"></menu-item>
+            <menu-item slot="menu-item" name="History"></menu-item>
+        </menu-group>
+        <menu-group slot="menu-item-group" sep>
+          <menu-item slot="menu-item" name="Cut"></menu-item>
+          <menu-item slot="menu-item" name="Copy"></menu-item>
+          <menu-item slot="menu-item" name="Paste"></menu-item>
+          <menu-item slot="menu-item" name="Clear Selection"></menu-item>
+          <menu-item slot="menu-item" name="Select All"></menu-item>
+        </menu-group>
+        <menu-group slot="menu-item-group">
+          <menu-item slot="menu-item" name="Copy To"></menu-item>
+          <menu-item slot="menu-item" name="Paste From"></menu-item>
+        </menu-group>
+      </main-menu>
+      <main-menu name="View">
+        <menu-group slot="menu-item-group">
+          <menu-item slot="menu-item" name="ToolBox"></menu-item>
+          <menu-item slot="menu-item" name="Color Box"></menu-item>
+          <menu-item slot="menu-item" name="Status Box"></menu-item>
+        </menu-group>
+      </main-menu>
+      <main-menu name="Image">
+        <menu-group slot="menu-item-group">
+          <menu-item slot="menu-item" name="Flip/Rotate"></menu-item>
+          <menu-item slot="menu-item" name="Stretch/Skew"></menu-item>
+          <menu-item slot="menu-item" name="Invert Colors"></menu-item>
+          <menu-item slot="menu-item" name="Attributes..."></menu-item>
+          <menu-item slot="menu-item" name="Clear Image"></menu-item>
+          <menu-item slot="menu-item" name="Draw Opaque"></menu-item>
+        </menu-group>
+      </main-menu>
+      <main-menu name="Colors">
+        <menu-group slot="menu-item-group">
+          <menu-item slot="menu-item" name="Edit Colors..."></menu-item>
+          <menu-item slot="menu-item" name="Get Colors"></menu-item>
+          <menu-item slot="menu-item" name="Save Colors"></menu-item>
+        </menu-group>
+      </main-menu>
+      <main-menu name="Help">
+        <menu-group slot="menu-item-group" sep>
+          <menu-item slot="menu-item" name="Help Topics"></menu-item>
+        </menu-group>
+        <menu-group slot="menu-item-group">
+          <menu-item slot="menu-item" name="About Paint"></menu-item>
+        </menu-group>
+      </main-menu>
     </div>
     <main>
       <div class="tools-draw">
@@ -70,6 +123,7 @@
     <script src="./js/ui.render.js"></script>
     <script src="./js/mouse.handlers.js"></script>
     <script src="./js/web.components.js"></script>
+    <script src="./js/menu.components.js"></script>
     <script>
     </script>
   </body>

@@ -4,7 +4,6 @@ class DrawTools extends HTMLElement {
   get name() {
     return this.getAttribute("name");
   }
-
   get png() {
     return this.hasAttribute("png");
   }
@@ -97,7 +96,6 @@ class ColorBox extends HTMLElement {
     super();
 
     this.addEventListener("mousedown", (e) => {
-      console.log(e.button)
       if (e.button == 0) {
         setSelectedColor(this.color, null);
       } else if (e.button == 2) {

@@ -7,6 +7,7 @@ const state = {
   undo_list: [],
   state69: null,
   recentTool: "pencil",
+  openMenu: null,
   saveState: function (_canvas, list, keep_redo) {
     keep_redo = keep_redo || false;
     if (!keep_redo) {
@@ -57,4 +58,10 @@ const state = {
   setState69(canvas) {
     this.state69 = canvas ? canvas.toDataURL() : null;
   },
-};
+  setMenu(menuName){
+    this.openMenu = menuName
+  },
+  getMenu(menuName){
+    return this.openMenu
+  },
+ };
