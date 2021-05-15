@@ -126,6 +126,7 @@ class MenuGroup extends HTMLElement {
       `;
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.setAttribute("slot","menu-item-group")
   }
 }
 
@@ -175,6 +176,7 @@ class MenuItem extends HTMLElement {
             }
             .hotkey {
                 color: grey;
+                font-size: smaller;
             }
 
             .name {
@@ -198,6 +200,8 @@ class MenuItem extends HTMLElement {
       `;
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.setAttribute("slot","menu-item")
+
     if ( this.toggle ) {
         // this.onclick()
         this.addEventListener("click", (e) => {

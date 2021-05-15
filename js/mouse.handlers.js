@@ -281,10 +281,13 @@ function shiftKeyUp(e) {
 window.addEventListener("keydown", shiftKeyDown);
 window.addEventListener("keyup", shiftKeyUp);
 
-window.addEventListener("click", e=> {
+window.addEventListener("mousedown", closeMenu);
+window.addEventListener("keydown", closeMenu);
+
+function closeMenu(e) {
   const includesMenu = e.target.nodeName.toLowerCase().includes("menu")
   if ( !includesMenu && state.openMenu) {
     document.querySelector(`main-menu[name=${state.openMenu}]`).removeAttribute("active")
     state.setMenu(null);
   }
-});
+}

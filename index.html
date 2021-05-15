@@ -11,65 +11,65 @@
   <body>
     <div class="menu-bar border">
       <main-menu name="File">
-        <menu-group slot="menu-item-group" sep>
-            <menu-item slot="menu-item" name="New" hotkey="Ctrl + N" ></menu-item>
-            <menu-item slot="menu-item" name="Open" hotkey="Ctrl + O" onclick="openFileWrapper()"></menu-item>
-            <menu-item slot="menu-item" name="Download"  hotkey="Ctrl + S" onclick="saveFile('image/jpeg')"></menu-item>
-            <menu-item slot="menu-item" name="Download As" onclick="saveFile('image/png')"></menu-item>
+        <menu-group sep>
+            <menu-item name="New" hotkey="Ctrl + N" ></menu-item>
+            <menu-item name="Open" hotkey="Ctrl + O" onclick="openFileWrapper()"></menu-item>
+            <menu-item name="Download"  hotkey="Ctrl + S" onclick="saveFile('image/jpeg')"></menu-item>
+            <menu-item name="Download As" onclick="saveFile('image/png')"></menu-item>
         </menu-group>
-        <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" name="Exit"></menu-item>
+        <menu-group>
+          <menu-item name="Exit"></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Edit">
-        <menu-group slot="menu-item-group" sep>
-            <menu-item slot="menu-item" name="Undo" hotkey="Ctrl + Z" onclick="state.undo(canvas, ctx);"></menu-item>
-            <menu-item slot="menu-item" name="Redo" hotkey="Ctrl + Y" onclick="state.redo(canvas, ctx);"></menu-item>
-            <menu-item slot="menu-item" name="History"></menu-item>
+        <menu-group sep>
+            <menu-item name="Undo" hotkey="Ctrl + Z" onclick="state.undo(canvas, ctx);"></menu-item>
+            <menu-item name="Redo" hotkey="Ctrl + Y" onclick="state.redo(canvas, ctx);"></menu-item>
+            <menu-item name="History"></menu-item>
         </menu-group>
-        <menu-group slot="menu-item-group" sep>
-          <menu-item slot="menu-item" name="Cut"></menu-item>
-          <menu-item slot="menu-item" name="Copy"></menu-item>
-          <menu-item slot="menu-item" name="Paste"></menu-item>
-          <menu-item slot="menu-item" name="Clear Selection"></menu-item>
-          <menu-item slot="menu-item" name="Select All"></menu-item>
+        <menu-group sep>
+          <menu-item name="Cut"></menu-item>
+          <menu-item name="Copy"></menu-item>
+          <menu-item name="Paste"></menu-item>
+          <menu-item name="Clear Selection"></menu-item>
+          <menu-item name="Select All"></menu-item>
         </menu-group>
-        <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" name="Copy To"></menu-item>
-          <menu-item slot="menu-item" name="Paste From"></menu-item>
+        <menu-group>
+          <menu-item name="Copy To"></menu-item>
+          <menu-item name="Paste From"></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="View">
-        <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" toggle name="ToolBox" active onclick="toggleArea('.tools-area')"></menu-item>
-          <menu-item slot="menu-item" toggle name="Color Box" active onclick="toggleArea('.colors-area')"></menu-item>
-          <menu-item slot="menu-item" toggle name="Status Box" active onclick="toggleArea('.info-area')"></menu-item>
+        <menu-group>
+          <menu-item toggle name="ToolBox" active onclick="toggleArea('.tools-area')"></menu-item>
+          <menu-item toggle name="Color Box" active onclick="toggleArea('.colors-area')"></menu-item>
+          <menu-item toggle name="Status Box" active onclick="toggleArea('.info-area')"></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Image">
-        <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" name="Flip/Rotate"></menu-item>
-          <menu-item slot="menu-item" name="Stretch/Skew"></menu-item>
-          <menu-item slot="menu-item" name="Invert Colors"></menu-item>
-          <menu-item slot="menu-item" name="Attributes..."></menu-item>
-          <menu-item slot="menu-item" name="Clear Image"></menu-item>
-          <menu-item slot="menu-item" name="Draw Opaque"></menu-item>
+        <menu-group>
+          <menu-item name="Flip/Rotate"></menu-item>
+          <menu-item name="Stretch/Skew"></menu-item>
+          <menu-item name="Invert Colors"></menu-item>
+          <menu-item name="Attributes..."></menu-item>
+          <menu-item name="Clear Image"></menu-item>
+          <menu-item name="Draw Opaque"></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Colors">
-        <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" name="Edit Colors..."></menu-item>
-          <menu-item slot="menu-item" name="Get Colors"></menu-item>
-          <menu-item slot="menu-item" name="Save Colors"></menu-item>
+        <menu-group>
+          <menu-item name="Edit Colors..."></menu-item>
+          <menu-item name="Get Colors"></menu-item>
+          <menu-item name="Save Colors"></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Help">
-        <menu-group slot="menu-item-group" sep>
-          <menu-item slot="menu-item" name="Help Topics"></menu-item>
+        <menu-group sep>
+          <menu-item name="Help Topics"></menu-item>
         </menu-group>
-        <menu-group slot="menu-item-group">
-          <menu-item slot="menu-item" name="My Github" href="https://github.com/overlorddamygod"></menu-item>
-          <menu-item slot="menu-item" name="Github Repository" href="https://github.com/overlorddamygod/ms-paint-web"></menu-item>
+        <menu-group>
+          <menu-item name="My Github" href="https://github.com/overlorddamygod"></menu-item>
+          <menu-item name="Github Repository" href="https://github.com/overlorddamygod/ms-paint-web"></menu-item>
         </menu-group>
       </main-menu>
     </div>
