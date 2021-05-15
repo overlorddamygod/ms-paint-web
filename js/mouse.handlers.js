@@ -88,7 +88,6 @@ const line_handleMouseDown = createMouseDownEvent(
 const line_handleMouseUp = createMouseUpEvent("line", line_handleMouseMove);
 
 function colorPicker_Click(event) {
-  
   const x = event.layerX;
   const y = event.layerY;
   const pixel = ctx.getImageData(x, y, 1, 1);
@@ -99,7 +98,7 @@ function colorPicker_Click(event) {
   );
 
   setSelectedColor(pickedColor, null);
-  document.querySelector(`#tool[data-tool-name=${state.recentTool}]`).click();
+  document.querySelector(`draw-tools[name=${state.recentTool}]`).click();
 }
 
 function fill_Click(event) {
@@ -192,7 +191,7 @@ const mouseHandlers = {
     mouseMove: roundedrect_handleMouseMove,
     mouseUp: roundedrect_handleMouseUp,
   },
-  "colorPicker": {
+  "color_picker": {
     click: colorPicker_Click,
   },
   "fill": {
@@ -230,8 +229,17 @@ window.addEventListener("keydown", async (e) => {
     (e.ctrlKey && e.key === "o" && !isMac) ||
     (e.metaKey && e.key === "o" && !e.shiftKey && isMac)
   ) {
+    e.preventDefault()
     console.log("OPEN");
     openFileWrapper();
+  }
+  if (
+    (e.ctrlKey && e.key === "s" && !isMac) ||
+    (e.metaKey && e.key === "s" && !e.shiftKey && isMac)
+  ) {
+    e.preventDefault()
+    console.log("Save");
+    saveFile('image/jpeg');
   }
   if (
     (e.ctrlKey && e.key === "v" && !isMac) ||

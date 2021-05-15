@@ -58,7 +58,7 @@ class DrawTools extends HTMLElement {
 
     this.addEventListener("click", (e) => {
       document.querySelector(`draw-tools[name=${selectedTool}`).removeAttribute("selected")
-
+      state.recentTool = selectedTool
       selectedTool = this.name;
       console.log(`Selected Tool :${selectedTool}`);
 
