@@ -116,29 +116,8 @@
         <div id="coords"></div>
       </div>
     </main>
-    <div class="window">
-      <div class="title-area">
-        <div id="title">Save As</div>
-        <button id="close-button"><abbr title="Close">✕</abbr></button>
-      </div>
-      <div class="window-main">
-        <form onsubmit="return false;">
-          <div class="row">
-            <div>Filename</div>
-            <input type="text" id="input"></input>
-            <button class="action-button" id="save" type="submit">Save</button>
-          </div>
-          <div class="row">
-            <div>Save type as</div>
-            <select name="image-type" id="input">
-              <option value="image/png">.png</option>
-              <option value="image/jpeg">.jpg</option>
-            </select>
-            <button class="action-button" id="cancel">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    
+    <save-dialog></save-dialog>
     <script>
     </script>
 
@@ -150,8 +129,9 @@
     <script src="./js/shape.handlers.js"></script>
     <script src="./js/ui.render.js"></script>
     <script src="./js/mouse.handlers.js"></script>
-    <script src="./js/web.components.js"></script>
-    <script src="./js/menu.components.js"></script>
+    <script src="./js/components/web.components.js"></script>
+    <script src="./js/components/menu.components.js"></script>
+    <script src="./js/components/window.component.js"></script>
     <script>
     </script>
   </body>

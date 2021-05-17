@@ -94,7 +94,6 @@ function openFile(file) {
   var reader = new FileReader();
   reader.onloadend = function () {
     resetState();
-    
     img.src = reader.result;
     console.log(img.src);
     img.onload = function () {
@@ -280,13 +279,13 @@ function toggleArea(selector) {
 }
 
 function openSaveDialogue() {
-  const windowSelector = document.querySelector(".window")
-  windowSelector.style.display = "block"
-  windowSelector.style.top = "40%"
-  windowSelector.style.left = "30%"
+  const saveDialog = document.querySelector("save-dialog")
+  saveDialog.children[0].style.display = "block"
+  saveDialog.children[0].shadowRoot.querySelector(".window").style.top = "40%"
+  saveDialog.children[0].shadowRoot.querySelector(".window").style.left = "30%"
 
   let filename = getOpenFileName().split(".")
   filename = filename.slice(0, filename.length - 1).join(".")
-  windowSelector.querySelector("input").value = filename
-  windowSelector.querySelector("input").focus()
+  saveDialog.querySelector("input").value = filename
+  saveDialog.querySelector("input").focus()
 }

@@ -206,48 +206,6 @@ main {
   height: 60%;
 }
 
-.window {
-  position: absolute;
-  top: 40%;
-  left: 30%;
-  background-color: var(--creme);
-  /* padding: 2px; */
-  min-width: 30rem;
-  border-radius: 2px;
-  border: 2px solid #2935EC;
-  user-select: none;
-  z-index: 100;
-  display: none;
-}
-
-.title-area {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #2935EC;
-  color: whitesmoke;
-  padding: 0.2rem 0.2rem 0.2rem 0.5rem;
-}
-
-#close-button {
-  width: 1.3rem;
-  height: 1.3rem;
-  border: 1px solid white;
-  border-radius: 3px;
-  background-color: #E43126;
-  text-align: center;
-  cursor: pointer;
-  color: whitesmoke;
-}
-
-#close-button:hover {
-  opacity: 0.8;
-}
-
-.window-main {
-  padding: 0.5rem;
-}
-
 .row {
   display: flex;
   justify-content: space-between;
