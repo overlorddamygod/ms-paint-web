@@ -22,3 +22,12 @@ _canvas.id = "myCanvasTemp";
 _canvas.width = canvas.width;
 _canvas.height = canvas.height;
 container.appendChild(_canvas);
+
+
+_canvas.addEventListener("mousemove", e => {
+    const { layerX : x, layerY : y } = e
+    coordsArea.textContent = `${x},${y}`
+})
+_canvas.addEventListener("mouseout", e => {
+    coordsArea.textContent = ``
+})

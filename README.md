@@ -4,6 +4,7 @@ Creating the old Microsoft paint for Web
 
 ### Techs used :
     * Html, Css, Js
+    * Web components
 
 #### References:
     * https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename

@@ -7,6 +7,9 @@ class DrawTools extends HTMLElement {
   get png() {
     return this.hasAttribute("png");
   }
+  get helpText() {
+    return this.getAttribute("helpText");
+  }
   get selected() {
     return this.hasAttribute("selected");
   }
@@ -68,6 +71,12 @@ class DrawTools extends HTMLElement {
         this.setAttribute("selected","lol")
       }
     });
+    this.addEventListener("mouseover", e => {
+      infoArea.textContent = this.helpText
+    })
+    this.addEventListener("mouseout", e => {
+      infoArea.textContent = defaultInfo
+    })
   }
 
   connectedCallback() {

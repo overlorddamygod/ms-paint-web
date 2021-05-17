@@ -211,7 +211,17 @@ main {
 
 .info-area {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 2rem;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+#coords {
+  display: flex;
+  justify-content: center;
+  min-width: 6rem;
+  width: 5rem;
+  border-left: 2px solid #8b999c;
+  height: 60%;
 }

@@ -12,64 +12,64 @@
     <div class="menu-bar border">
       <main-menu name="File">
         <menu-group sep>
-            <menu-item name="New" hotkey="Ctrl + N" ></menu-item>
-            <menu-item name="Open" hotkey="Ctrl + O" onclick="openFileWrapper()"></menu-item>
-            <menu-item name="Download"  hotkey="Ctrl + S" onclick="saveFile('image/jpeg')"></menu-item>
-            <menu-item name="Download As" onclick="saveFile('image/png')"></menu-item>
+            <menu-item name="New" hotkey="Ctrl + N"  helpText="Creates a new document."></menu-item>
+            <menu-item name="Open" hotkey="Ctrl + O" onclick="openFileWrapper()" helpText="Opens an existing document."></menu-item>
+            <menu-item name="Download"  hotkey="Ctrl + S" onclick="saveFile('image/jpeg')" helpText="Download the active document"></menu-item>
+            <menu-item name="Download As" onclick="saveFile('image/png')" helpText="Download the active document"></menu-item>
         </menu-group>
         <menu-group>
-          <menu-item name="Exit"></menu-item>
+          <menu-item name="Exit" helpText="Quits Paint."></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Edit">
         <menu-group sep>
-            <menu-item name="Undo" hotkey="Ctrl + Z" onclick="state.undo(canvas, ctx);"></menu-item>
-            <menu-item name="Redo" hotkey="Ctrl + Y" onclick="state.redo(canvas, ctx);"></menu-item>
-            <menu-item name="History"></menu-item>
+            <menu-item name="Undo" hotkey="Ctrl + Z" onclick="state.undo(canvas, ctx);" helpText="Undoes the last action."></menu-item>
+            <menu-item name="Redo" hotkey="Ctrl + Y" onclick="state.redo(canvas, ctx);" helpText="Redoes the previously undone action."></menu-item>
+            <menu-item name="History" helpText=""></menu-item>
         </menu-group>
         <menu-group sep>
-          <menu-item name="Cut"></menu-item>
-          <menu-item name="Copy"></menu-item>
-          <menu-item name="Paste"></menu-item>
-          <menu-item name="Clear Selection"></menu-item>
-          <menu-item name="Select All"></menu-item>
+          <menu-item name="Cut" helpText="Cuts the selection and puts it on the Clipboard."></menu-item>
+          <menu-item name="Copy" helpText="Copies the selection and puts it on the Clipboard."></menu-item>
+          <menu-item name="Paste" helpText="Inserts the contents of the Clipboard."></menu-item>
+          <menu-item name="Clear Selection" helpText="Deletes the selection."></menu-item>
+          <menu-item name="Select All" helpText="Selects everything."></menu-item>
         </menu-group>
         <menu-group>
-          <menu-item name="Copy To"></menu-item>
-          <menu-item name="Paste From"></menu-item>
+          <menu-item name="Copy To" helpText="Copies the selection to a file."></menu-item>
+          <menu-item name="Paste From" helpText="Pastes a file into the selection."></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="View">
         <menu-group>
-          <menu-item toggle name="ToolBox" active onclick="toggleArea('.tools-area')"></menu-item>
-          <menu-item toggle name="Color Box" active onclick="toggleArea('.colors-area')"></menu-item>
-          <menu-item toggle name="Status Box" active onclick="toggleArea('.info-area')"></menu-item>
+          <menu-item toggle name="ToolBox" active onclick="toggleArea('.tools-area')" helpText="Shows or hides the tool box."></menu-item>
+          <menu-item toggle name="Color Box" active onclick="toggleArea('.colors-area')" helpText="Shows or hides the color box."></menu-item>
+          <menu-item toggle name="Status Box" active onclick="toggleArea('.info-area')" helpText="Shows or hides the text toolbar."></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Image">
         <menu-group>
-          <menu-item name="Flip/Rotate"></menu-item>
-          <menu-item name="Stretch/Skew"></menu-item>
-          <menu-item name="Invert Colors"></menu-item>
-          <menu-item name="Attributes..."></menu-item>
-          <menu-item name="Clear Image"></menu-item>
-          <menu-item name="Draw Opaque"></menu-item>
+          <menu-item name="Flip/Rotate" helpText=""></menu-item>
+          <menu-item name="Stretch/Skew" helpText=""></menu-item>
+          <menu-item name="Invert Colors" helpText=""></menu-item>
+          <menu-item name="Attributes..." helpText=""></menu-item>
+          <menu-item name="Clear Image" helpText=""></menu-item>
+          <menu-item name="Draw Opaque" helpText=""></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Colors">
         <menu-group>
-          <menu-item name="Edit Colors..."></menu-item>
-          <menu-item name="Get Colors"></menu-item>
-          <menu-item name="Save Colors"></menu-item>
+          <menu-item name="Edit Colors..." helpText="Creates a new color."></menu-item>
+          <menu-item name="Get Colors" helpText="Uses a previously saved palette of colors."></menu-item>
+          <menu-item name="Save Colors" helpText="Saves the current palette of colors to a file."></menu-item>
         </menu-group>
       </main-menu>
       <main-menu name="Help">
         <menu-group sep>
-          <menu-item name="Help Topics"></menu-item>
+          <menu-item name="Help Topics" helpText="Displays Help for the current task or command."></menu-item>
         </menu-group>
         <menu-group>
-          <menu-item name="My Github" href="https://github.com/overlorddamygod"></menu-item>
-          <menu-item name="Github Repository" href="https://github.com/overlorddamygod/ms-paint-web"></menu-item>
+          <menu-item name="My Github" href="https://github.com/overlorddamygod" helpText="Go to my Github Profile"></menu-item>
+          <menu-item name="Github Repository" href="https://github.com/overlorddamygod/ms-paint-web" helpText="Go to this project's Github Repository"></menu-item>
         </menu-group>
       </main-menu>
     </div>
@@ -77,22 +77,22 @@
       <div class="tools-draw">
         <div class="tools-area border">
           <div id="tools">
-            <draw-tools name="fill"></draw-tools>
-            <draw-tools name="word"></draw-tools>
-            <draw-tools name="eraser"></draw-tools>
-            <draw-tools name="fill"></draw-tools>
-            <draw-tools name="color_picker"></draw-tools>
-            <draw-tools name="magnify" png></draw-tools>
-            <draw-tools name="pencil" selected></draw-tools>
-            <draw-tools name="brush"></draw-tools>
-            <draw-tools name="polygon"></draw-tools>
-            <draw-tools name="word"></draw-tools>
-            <draw-tools name="line"></draw-tools>
-            <draw-tools name="curve"></draw-tools>
-            <draw-tools name="rect"></draw-tools>
-            <draw-tools name="polygon"></draw-tools>
-            <draw-tools name="ellipse"></draw-tools>
-            <draw-tools name="rounded_rect"></draw-tools>
+            <draw-tools name="fill" helpText="Fills an area with the selected drawing color."></draw-tools>
+            <draw-tools name="text" helpText="Inserts text into the picture."></draw-tools>
+            <draw-tools name="eraser" helpText="Erases a portion of the picture, using the selected eraser shape."></draw-tools>
+            <draw-tools name="fill" helpText="Fills an area with the selected drawing color."></draw-tools>
+            <draw-tools name="color_picker" helpText="Picks up a color from the picture for drawing."></draw-tools>
+            <draw-tools name="magnify" png helpText="Changes the magnification."></draw-tools>
+            <draw-tools name="pencil" selected helpText="Draws a free-form line one pixel wide."></draw-tools>
+            <draw-tools name="brush" helpText="Draws using a brush with the selected shape and size."></draw-tools>
+            <draw-tools name="polygon" helpText="Draws a polygon with the selected fill style."></draw-tools>
+            <draw-tools name="text" helpText="Inserts text into the picture."></draw-tools>
+            <draw-tools name="line" helpText="Draws a straight line with the selected line width."></draw-tools>
+            <draw-tools name="curve" helpText="Draws a curved line with the selected line width."></draw-tools>
+            <draw-tools name="rect" helpText="Draws a rectangle with the selected fill style."></draw-tools>
+            <draw-tools name="polygon" helpText="Draws a polygon with the selected fill style."></draw-tools>
+            <draw-tools name="ellipse" helpText="Draws an ellipse with the selected fill style."></draw-tools>
+            <draw-tools name="rounded_rect" helpText="Draws a rounded rectangle with the selected fill style"></draw-tools>
           </div>
           <div class="choice-area border">
             <!-- Stroke Select Area -->
@@ -112,7 +112,8 @@
         </div>
       </div>
       <div class="info-area border">
-        For Help, click Help Topics on the Help Menu.
+        <div id="help-text">For Help, click Help Topics on the Help Menu.</div>
+        <div id="coords"></div>
       </div>
     </main>
     <!-- Scripts -->

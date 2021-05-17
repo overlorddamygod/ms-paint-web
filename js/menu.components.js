@@ -105,6 +105,7 @@ class MenuGroup extends HTMLElement {
   get sep() {
     return this.hasAttribute("sep");
   }
+
   constructor() {
     super();
 
@@ -146,6 +147,9 @@ class MenuItem extends HTMLElement {
   }
   get toggle() {
     return this.hasAttribute("toggle");
+  }
+  get helpText() {
+    return this.getAttribute("helpText");
   }
   static get observedAttributes() {
     return ["active"];
@@ -213,6 +217,12 @@ class MenuItem extends HTMLElement {
             }
         })
     }
+    this.addEventListener("mouseover", e => {
+      infoArea.textContent = this.helpText
+    })
+    this.addEventListener("mouseout", e => {
+      infoArea.textContent = defaultInfo
+    })
   }
 }
 
