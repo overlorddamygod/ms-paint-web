@@ -93,8 +93,8 @@ function openFile(file) {
 
   var reader = new FileReader();
   reader.onloadend = function () {
-    state.undo_list = [];
-    state.redo_list = [];
+    resetState();
+    
     img.src = reader.result;
     console.log(img.src);
     img.onload = function () {
@@ -121,6 +121,21 @@ function openFile(file) {
     };
   };
   reader.readAsDataURL(file);
+}
+function newFile() {
+  if (confirm(`Are you sure you want to create a new document?`)) {
+    setFileName("Untitled.png");
+
+    resetState();
+
+    canvas.width = 960;
+    canvas.height = 500;
+    _canvas.width = 960;
+    _canvas.height = 500;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    _ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
 }
 
 // Reference - https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename

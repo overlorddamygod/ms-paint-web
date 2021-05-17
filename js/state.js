@@ -69,6 +69,13 @@ const state = {
   },
  };
 
+function resetState() {
+  state.zoomed = false
+  state.redo_list = []
+  state.undo_list = []
+  state.state69 = null
+}
+
 
 //  [
 //   {

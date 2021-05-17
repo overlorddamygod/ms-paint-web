@@ -214,6 +214,7 @@ window.addEventListener("keydown", async (e) => {
   if ( keyPress(e, "n") ) {
     e.preventDefault()
     console.log("NEW")
+    newFile()
   }
   if ( keyPress(e, "o") ) {
     e.preventDefault()
