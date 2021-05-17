@@ -14,8 +14,8 @@
         <menu-group sep>
             <menu-item name="New" hotkey="Ctrl + N"  helpText="Creates a new document."></menu-item>
             <menu-item name="Open" hotkey="Ctrl + O" onclick="openFileWrapper()" helpText="Opens an existing document."></menu-item>
-            <menu-item name="Download"  hotkey="Ctrl + S" onclick="saveFile('image/jpeg')" helpText="Download the active document"></menu-item>
-            <menu-item name="Download As" onclick="saveFile('image/png')" helpText="Download the active document"></menu-item>
+            <menu-item name="Save"  hotkey="Ctrl + S" onclick="openSaveDialogue()" helpText="Save the active document"></menu-item>
+            <menu-item name="Save As" onclick="openSaveDialogue()" helpText="Save the active document"></menu-item>
         </menu-group>
         <menu-group>
           <menu-item name="Exit" helpText="Quits Paint."></menu-item>
@@ -116,6 +116,32 @@
         <div id="coords"></div>
       </div>
     </main>
+    <div class="window">
+      <div class="title-area">
+        <div id="title">Save As</div>
+        <button id="close-button"><abbr title="Close">✕</abbr></button>
+      </div>
+      <div class="window-main">
+        <form onsubmit="return false;">
+          <div class="row">
+            <div>Filename</div>
+            <input type="text" id="input"></input>
+            <button class="action-button" id="save" type="submit">Save</button>
+          </div>
+          <div class="row">
+            <div>Save type as</div>
+            <select name="image-type" id="input">
+              <option value="image/png">.png</option>
+              <option value="image/jpeg">.jpg</option>
+            </select>
+            <button class="action-button" id="cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+    </script>
+
     <!-- Scripts -->
     <script src="./js/utils.js"></script>
     <script src="./js/state.js"></script>

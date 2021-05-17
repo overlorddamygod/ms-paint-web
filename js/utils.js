@@ -144,9 +144,9 @@ function openFileWrapper() {
     inputElement.dispatchEvent(new MouseEvent("click"));
 }
 
-function saveFile(type = "image/png") {
+function saveFile(filename,type = "image/png") {
   var link = document.createElement("a");
-  link.setAttribute("download", getOpenFileName());
+  link.setAttribute("download", filename);
   link.setAttribute(
     "href",
     canvas.toDataURL(type)
@@ -262,4 +262,16 @@ function floodFill(imageData, newColor, x, y) {
 function toggleArea(selector) {
   selector = document.querySelector(selector)
   selector.style.display = selector.style.display == "none" ? "flex" : "none";
+}
+
+function openSaveDialogue() {
+  const windowSelector = document.querySelector(".window")
+  windowSelector.style.display = "block"
+  windowSelector.style.top = "40%"
+  windowSelector.style.left = "30%"
+
+  let filename = getOpenFileName().split(".")
+  filename = filename.slice(0, filename.length - 1).join(".")
+  windowSelector.querySelector("input").value = filename
+  windowSelector.querySelector("input").focus()
 }

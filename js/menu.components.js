@@ -215,6 +215,13 @@ class MenuItem extends HTMLElement {
                 this.setAttribute("active","lol")
             }
         })
+    } else {
+      this.addEventListener("click",e=> {
+        if (state.openMenu) {
+          document.querySelector(`main-menu[name=${state.openMenu}]`).removeAttribute("active")
+          state.setMenu(null);
+        }
+      })
     }
     this.addEventListener("mouseover", e => {
       infoArea.textContent = this.helpText

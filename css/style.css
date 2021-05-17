@@ -25,7 +25,7 @@ body {
   align-items: center;
   height: 2rem;
   min-height: 2rem;
-  z-index: 100;
+  /* z-index: 100; */
 }
 
 /* Tools and Draw Area */
@@ -119,6 +119,7 @@ main {
   height: 100%;
   overflow: auto;
   position: relative;
+  height: 40rem;
 }
 
 #myCanvas {
@@ -145,7 +146,6 @@ main {
   background-color: #f5f1f0;
   padding: 0.5rem;
   width: 4.5rem;
-  /* height: 100%; */
   position: relative;
 }
 
@@ -204,4 +204,72 @@ main {
   width: 5rem;
   border-left: 2px solid #8b999c;
   height: 60%;
+}
+
+.window {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  background-color: var(--creme);
+  /* padding: 2px; */
+  min-width: 30rem;
+  border-radius: 2px;
+  border: 2px solid #2935EC;
+  user-select: none;
+  z-index: 100;
+  display: none;
+}
+
+.title-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2935EC;
+  color: whitesmoke;
+  padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+}
+
+#close-button {
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: #E43126;
+  text-align: center;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+#close-button:hover {
+  opacity: 0.8;
+}
+
+.window-main {
+  padding: 0.5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row div {
+  width: 6rem;
+}
+
+#input {
+  flex: 1;
+  margin:0 0.5rem;
+}
+
+.action-button {
+  background-color: #EDF3E9;
+  width: 5rem;
+  padding: 3px 0;
+  border-radius: 3px;
+}
+
+#action-button:hover {
+  /* border: 1px solid #8890D0; */
 }

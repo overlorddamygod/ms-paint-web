@@ -223,7 +223,7 @@ window.addEventListener("keydown", async (e) => {
   if ( keyPress(e, "s") ) {
     e.preventDefault()
     // console.log("SAVE");
-    saveFile('image/jpeg');
+    openSaveDialogue();
   }
   if ( keyPress(e, "v") ) {
     console.log("Paste");
