@@ -2,7 +2,7 @@ let primaryColor = "#000000";
 let secondaryColor = "#ffffff";
 let color = primaryColor;
 
-let stroke = 1;
+let stroke = 2;
 const maxStroke = 7;
 let oldPt;
 let drawing = false;

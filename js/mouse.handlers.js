@@ -181,6 +181,11 @@ const mouseHandlers = {
     mouseMove: roundedrect_handleMouseMove,
     mouseUp: roundedrect_handleMouseUp,
   },
+  "text": {
+    mouseDown: text_handleMouseDown,
+    mouseMove: text_handleMouseMove,
+    mouseUp: text_handleMouseUp,
+  },
   "color_picker": {
     click: colorPicker_Click,
   },

@@ -231,3 +231,24 @@ main {
 #action-button:hover {
   /* border: 1px solid #8890D0; */
 }
+
+/* Text */
+
+.text {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  /* height: 5rem; */
+  border: 1px dashed blue;
+  /* outline: 0; */
+  resize: none;
+  border-image-width: 3;
+  background: transparent;
+  font-size: 16px;
+  color: transparent;
+  font-family: Arial;
+  line-height: 1;
+  word-wrap:break-word;
+}
