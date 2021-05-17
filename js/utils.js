@@ -149,7 +149,7 @@ function saveFile(type = "image/png") {
   link.setAttribute("download", getOpenFileName());
   link.setAttribute(
     "href",
-    canvas.toDataURL(type).replace(type, "image/octet-stream")
+    canvas.toDataURL(type)
   );
   link.click();
 }
