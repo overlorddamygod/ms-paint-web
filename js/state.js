@@ -1,4 +1,4 @@
-const isMac = window.navigator.userAgent.indexOf("Mac") != -1;
+const isMac = window.navigator.userAgent.toLowerCase().indexOf("mac") != -1;
 const infoArea = document.querySelector("#help-text")
 const coordsArea = document.querySelector("#coords")
 const defaultInfo = infoArea.textContent

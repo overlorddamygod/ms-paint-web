@@ -28,6 +28,8 @@ function hexToRGB(hex) {
   };
 }
 
+Math.clamp = (a,b,c) => Math.max(b,Math.min(c,a))
+
 function setSelectedColor(primaryCol, secondaryCol) {
   if (primaryCol) {
     primaryColor = primaryCol;
@@ -260,5 +262,4 @@ function floodFill(imageData, newColor, x, y) {
 function toggleArea(selector) {
   selector = document.querySelector(selector)
   selector.style.display = selector.style.display == "none" ? "flex" : "none";
-  console.log(selector)
 }

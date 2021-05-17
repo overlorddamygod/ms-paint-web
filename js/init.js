@@ -3,6 +3,7 @@ let secondaryColor = "#ffffff";
 let color = primaryColor;
 
 let stroke = 1;
+const maxStroke = 7;
 let oldPt;
 let drawing = false;
 
@@ -22,7 +23,6 @@ _canvas.id = "myCanvasTemp";
 _canvas.width = canvas.width;
 _canvas.height = canvas.height;
 container.appendChild(_canvas);
-
 
 _canvas.addEventListener("mousemove", e => {
     const { layerX : x, layerY : y } = e

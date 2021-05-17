@@ -209,7 +209,6 @@ class MenuItem extends HTMLElement {
     if ( this.toggle ) {
         // this.onclick()
         this.addEventListener("click", (e) => {
-            console.log(this.shadowRoot.querySelector("span"))
             if ( this.active ) {
                 this.removeAttribute("active")
             } else {

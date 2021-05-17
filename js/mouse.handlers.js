@@ -148,16 +148,6 @@ function magnify_Click(event) {
 
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
   };
-
-  // const x = event.layerX;
-  // const y = event.layerY;
-  // const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-  // setColorByMouseButton(event);
-
-  // const col = hexToRGB(color);
-  // floodFill(imageData, col, x, y);
-  // ctx.putImageData(imageData, 0, 0);
 }
 
 const mouseHandlers = {
@@ -204,51 +194,50 @@ const mouseHandlers = {
 
 window.addEventListener("contextmenu", (e) => e.preventDefault());
 
+const keyPress = (e, key) => {
+  return (e.ctrlKey && !e.shiftKey && (e.key === key) && !isMac) ||
+    (e.metaKey && !e.shiftKey && (e.key === key) && isMac)
+}
+
 window.addEventListener("keydown", async (e) => {
-  if (
-    (e.ctrlKey && e.key === "z" && !isMac) ||
-    (e.metaKey && e.key === "z" && !e.shiftKey && isMac)
-  ) {
-    console.log("UNDO");
+  if ( keyPress(e, "z") ) {
+    console.log("UNDO")
     state.undo(canvas, ctx);
   }
   if (
-    (e.ctrlKey && e.key === "y" && !isMac) ||
+    (e.ctrlKey && e.key === "y" && !e.shiftKey && !isMac) ||
     (e.metaKey && e.shiftKey && e.key === "z" && isMac)
   ) {
-    console.log("REDO");
+    // console.log("REDO");
     state.redo(canvas, ctx);
   }
-  if (
-    (e.ctrlKey && e.key === "n" && !isMac) ||
-    (e.metaKey && e.key === "n" && !e.shiftKey && isMac)
-  ) {
-    console.log("NEW");
-  }
-  if (
-    (e.ctrlKey && e.key === "o" && !isMac) ||
-    (e.metaKey && e.key === "o" && !e.shiftKey && isMac)
-  ) {
+  if ( keyPress(e, "n") ) {
     e.preventDefault()
-    console.log("OPEN");
+    console.log("NEW")
+  }
+  if ( keyPress(e, "o") ) {
+    e.preventDefault()
+    // console.log("OPEN");
     openFileWrapper();
   }
-  if (
-    (e.ctrlKey && e.key === "s" && !isMac) ||
-    (e.metaKey && e.key === "s" && !e.shiftKey && isMac)
-  ) {
+  if ( keyPress(e, "s") ) {
     e.preventDefault()
-    console.log("Save");
+    // console.log("SAVE");
     saveFile('image/jpeg');
   }
-  if (
-    (e.ctrlKey && e.key === "v" && !isMac) ||
-    (e.metaKey && e.key === "v" && !e.shiftKey && isMac)
-  ) {
+  if ( keyPress(e, "v") ) {
     console.log("Paste");
     // const text = await navigator.clipboard.readText();
     // console.log(text)
-    // state.undo(canvas, ctx);
+    // state.undo(canvas, ctx);  
+  }
+  if ( keyPress(e, "=") ) {
+    e.preventDefault();
+    stroke = Math.clamp(++stroke, 1, 7)
+  }
+  if ( keyPress(e, "-") ) {
+    e.preventDefault();
+    stroke = Math.clamp(--stroke, 1, maxStroke)
   }
 });
 

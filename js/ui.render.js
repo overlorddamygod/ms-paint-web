@@ -41,7 +41,7 @@ document.querySelector(".selected-color").addEventListener("click", () => {
   setSelectedColor(secondaryColor, tempColor);
 });
 
-const strokeWeights = Array.from({ length: 7 }).map((a, i) => i + 1);
+const strokeWeights = Array.from({ length: maxStroke }).map((a, i) => i + 1);
 strokeWeights.forEach((strokeWeight) => {
   const div = document.createElement("div");
   div.id = "choice";
