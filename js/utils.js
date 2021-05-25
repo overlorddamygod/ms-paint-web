@@ -88,6 +88,7 @@ function setFileName(filename) {
 }
 
 function openFile(file) {
+  
   setFileName(file.name);
   const img = new Image();
 
@@ -148,7 +149,7 @@ function openFileWrapper() {
     // set onchange event to call callback when user has selected file
     inputElement.addEventListener("change", (e) => {
       if (confirm(`Are you sure you want to exit ${getOpenFileName()}`)) {
-        const file = e.originalTarget.files[0];
+        const file = e.target.files[0];
   
         openFile(file);
       }
