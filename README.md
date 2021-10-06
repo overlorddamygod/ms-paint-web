@@ -1,4 +1,4 @@
-# [MS-Paint-Web](https://overlorddamygod.github.io/ms-paint-web)
+# [MS-Paint-Web](https://overlorddamygod.github.io/ms-paint-web/)
 
 Creating the old Microsoft paint for Web
 
